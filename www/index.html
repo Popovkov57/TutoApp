@@ -31,9 +31,7 @@
           <div ng-controller="serviceAppController">
               <ul>
                   <li ng-repeat="user in users">
-                      fullName : {{user.fullName}}<br />
-                      adress : {{user.adress}}<br />
-                      avatarURL : {{user.avatarURL}}<br /><br />
+                      fullName : {{user.name.first}}<br />
                   </li>
               </ul>
           </div>

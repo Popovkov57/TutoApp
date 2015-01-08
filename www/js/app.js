@@ -16,25 +16,15 @@ serviceApp.run(function($ionicPlatform) {
   });
 })
 
-serviceApp.factory('Users', function() {
+serviceApp.factory('Users', function($http) {
     
-    var users = [
-        {
-                "fullName" : "Max",
-                "adress" : "Paris",
-                "avatarURL" : "photo_1.jpg"
-            },
-            {
-                "fullName" : "Toto",
-                "adress" : "Metz",
-                "avatarURL" : "photo_2.jpg"
-            }
- 
-    ];
+    var users = [];
     
-    var init = function($http){
-       // $http.get('http://api.randomuser.me/').success(function(data){
-    //    });
+    var init = function(){ 
+        // load 5 ramdom person 
+     $http.get('http://api.randomuser.me/?results=5').success(function(data){
+            users = data;
+        });
     }
     
     var getList = function() {
@@ -50,5 +40,8 @@ serviceApp.factory('Users', function() {
 serviceApp.controller('serviceAppController', function($scope, Users){
     console.log("hello world");
     
+    Users.init();
     $scope.users = Users.getList();
+    
+    
 });   
