@@ -16,18 +16,26 @@ serviceApp.run(function($ionicPlatform) {
   });
 })
 
-serviceApp.controller('serviceAppController', ['$scope', function($scope){
-    console.log("hello world");
-}])
-
-
-// Service
-
-var services = angular.module('services', []);
-
-services.factory('ServiceController' [$scope, function($scope){
+serviceApp.factory('Users', function() {
+    var users = [];
     
-    var init = function(){
-            
+    var init = function($http){
+       // $http.get('http://api.randomuser.me/').success(function(data){
+    //    });
     }
-}]
+    
+    var getList = function() {
+        return users;
+    }
+    
+    return {
+        init: init,
+        getList: getList
+    }
+});
+
+serviceApp.controller('serviceAppController', function($scope, Users){
+    console.log("hello world");
+    
+    $scope.users = Users.getList();
+});   
