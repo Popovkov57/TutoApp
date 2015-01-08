@@ -17,7 +17,20 @@ serviceApp.run(function($ionicPlatform) {
 })
 
 serviceApp.factory('Users', function() {
-    var users = [];
+    
+    var users = [
+        {
+                "fullName" : "Max",
+                "adress" : "Paris",
+                "avatarURL" : "photo_1.jpg"
+            },
+            {
+                "fullName" : "Toto",
+                "adress" : "Metz",
+                "avatarURL" : "photo_2.jpg"
+            }
+ 
+    ];
     
     var init = function($http){
        // $http.get('http://api.randomuser.me/').success(function(data){
