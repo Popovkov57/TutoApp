@@ -20,3 +20,14 @@ serviceApp.controller('serviceAppController', ['$scope', function($scope){
     console.log("hello world");
 }])
 
+
+// Service
+
+var services = angular.module('services', []);
+
+services.factory('ServiceController' [$scope, function($scope){
+    
+    var init = function(){
+            
+    }
+}]
