@@ -1,4 +1,5 @@
-// Ionic Starter App
+// Exo 1
+// lien => https://gist.github.com/skelz0r/80a41c9ef24b16879c3a
 
 
 var serviceApp = angular.module('serviceApp', ['ionic']);
@@ -22,33 +23,32 @@ serviceApp.factory('Users', function($http) {
     
     
     
-    var init = function(){ 
+    var init = function(){
+        
         // load 5 ramdom person 
-     $http.get('http://api.randomuser.me/?results=5').success(function(data){
-            users = data;
-         for(var i=0; i<data.results.length; i++){
+        $http.get('http://api.randomuser.me/?results=5').success(function(data){
+        
+        users = data;
+         
+        // parcours la liste data et
+        // récupère les données de chaque utilisateur
+        for(var i=0; i<data.results.length; i++){
              
-            /*console.log("firstname: " + data.results[i].user.name.first
-                       + " lastname: " + data.results[i].user.name.last
-                       + " adress: " + data.results[i].user.location.city + " " + data.results[i].user.location.street
-                       );*/
-             
-             users = {firstname:data.results[i].user.name.first,
+        users = {firstname:data.results[i].user.name.first,
                  lastname:data.results[i].user.name.last,
                  email:data.results[i].user.email,
                  city:data.results[i].user.location.city,
                  street:data.results[i].user.location.street};
-         }
+        }
         
-         console.log(users);
+        //console.log(users);
+            
         });
     }
     
     var getList = function() {
-        //if(users!=[]){
-            console.log(users);
-            return users;
-        //}
+        console.log(users);
+        return users;
     }
     
     return {
@@ -57,10 +57,8 @@ serviceApp.factory('Users', function($http) {
     }
 });
 
+
 serviceApp.controller('serviceAppController', function($scope, Users){
-    
     Users.init();
     $scope.users = Users.getList();
-    
-    
 });   
