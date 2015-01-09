@@ -29,15 +29,18 @@
       </ion-header-bar>
       <ion-content>
           <div ng-controller="serviceAppController">
-              <ul>
-                  <li ng-repeat="user in users">
-                      firstame : {{user.firstname}}<br />
-                      lastName : {{user.lastname}}<br />
-                      avatarURL : {{user.avatarURL}} <br />
-                      city : {{user.city}} <br />
-                      street : {{user.street}} <br /><br />
-                  </li>
-              </ul>
+              <div class="list">
+                  <a class="item item-avatar" href="#" ng-repeat="user in users">
+                     <img src="{{user.avatarURL}}">
+                      <h2>{{user.firstname}} {{user.lastname}}</h2>
+                      <p>
+                          <strong>Adresse</strong><br/>
+                          {{user.city}}<br />
+                          {{user.street}}
+                      </p>
+                      
+                  </a>
+              </div>
           </div>
       </ion-content>
     </ion-pane>
