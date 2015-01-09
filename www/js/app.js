@@ -22,15 +22,18 @@ serviceApp.factory('Users', function($http) {
         
         $http.get('http://api.randomuser.me/?results=5').success(function(data){
          
-        for(var i=0; i<data.results.length; i++){
-            users[i]= 
-                {"firstname": data.results[i].user.name.first,
-                 "lastname": data.results[i].user.name.last,
-                 "email": data.results[i].user.email,
-                 "city": data.results[i].user.location.city,
-                 "street": data.results[i].user.location.street
-                };
-        };
+            for(var i=0; i<data.results.length; i++){
+
+                var tempUser = data.results[i].user;
+
+                users[i]= 
+                    {"firstname": tempUser.name.first,
+                     "lastname": tempUser.name.last,
+                     "avatarURL": tempUser.picture.thumbnail,
+                     "city": tempUser.location.city,
+                     "street": tempUser.location.street
+                    };
+            };
             
         });
     }
