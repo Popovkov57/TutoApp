@@ -32,10 +32,10 @@
               <div class="list">
                   <a class="item item-avatar" href="#" ng-repeat="user in users">
                      <img src="{{user.avatarURL}}">
-                      {{user.firstname}}<br />
-                      {{user.lastname}}<br />
+                      <h2>{{user.firstname}}</h2>
+                      <p>{{user.lastname}}</p>
                       <i class="icon ion-home"></i> {{user.city}}<br />
-                       {{user.street}}<br /><br />
+                       <p>{{user.street}}</p>
                   </a>
               </div>
           </div>
