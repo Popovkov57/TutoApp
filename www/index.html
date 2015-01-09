@@ -31,11 +31,14 @@
           <div ng-controller="serviceAppController">
               <ul>
                   <li ng-repeat="user in users">
-                      fullName : {{user.firstname}}<br />
+                      firstame : {{user.firstname}}<br />
+                      lastName : {{user.lastname}}<br />
+                      email : {{user.email}} <br />
+                      city : {{user.city}} <br />
+                      street : {{user.street}} <br /><br />
                   </li>
               </ul>
           </div>
-          <p>ServiceApp</p>
       </ion-content>
     </ion-pane>
   </body>
