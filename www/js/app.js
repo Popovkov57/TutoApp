@@ -1,14 +1,10 @@
-// Ionic Starter App
+var serviceApp = angular.module('serviceApp', ['ionic']);
 
-// angular.module is a global place for creating, registering and retrieving Angular modules
-// 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
-// the 2nd parameter is an array of 'requires'
-var starter = angular.module('starter', ['ionic']);
+var users = [];
 
-starter.run(function($ionicPlatform) {
+serviceApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
+    
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -18,12 +14,41 @@ starter.run(function($ionicPlatform) {
   });
 })
 
-starter.controller('controller', function($scope){
-    //console.log("Hello");
-    $scope.custumers=[
-        {name:'Max', city:'Paris'},
-        {name:'Jojo', city:'Paris'},
-        {name:'Roger', city:'Metz'},
-        {name:'Max', city:'Paris'}
-    ];
-})
+serviceApp.factory('Users', function($http) {
+    
+    var users = []; 
+    
+    var init = function(){
+        
+        $http.get('http://api.randomuser.me/?results=5').success(function(data){
+         
+            for(var i=0; i<data.results.length; i++){
+
+                var tempUser = data.results[i].user;
+
+                users[i]= 
+                    {"firstname": tempUser.name.first,
+                     "lastname": tempUser.name.last,
+                     "avatarURL": tempUser.picture.thumbnail,
+                     "city": tempUser.location.city,
+                     "street": tempUser.location.street
+                    };
+            };
+            
+        });
+    }
+    
+    var getList = function() {
+        return users;
+    }
+    
+    return {
+        init: init,
+        getList: getList
+    }
+});
+
+serviceApp.controller('serviceAppController', function($scope, Users){
+    Users.init();
+    $scope.users = Users.getList();
+});   
