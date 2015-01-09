@@ -38,17 +38,25 @@ serviceApp.factory('Users', function($http) {
         });
     }
     
+    var add = function(){
+        
+        console.log(users);
+    
+    }
+    
     var getList = function() {
         return users;
     }
     
     return {
         init: init,
+        add: add,
         getList: getList
     }
 });
 
 serviceApp.controller('serviceAppController', function($scope, Users){
     Users.init();
+    Users.add();
     $scope.users = Users.getList();
 });   
