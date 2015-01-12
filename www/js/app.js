@@ -19,10 +19,6 @@ serviceApp.factory('Users',function($http) {
     var users = [];
     var user;
 
-    //$ionicLoading.show({
-    //  template: 'loading'
-    //})
-
     var init = function(){
 
         $http.get('http://api.randomuser.me/?results=5').success(function(data){
@@ -72,6 +68,7 @@ serviceApp.factory('Users',function($http) {
     var refreshList = function() {
       users.splice(0,users.length);
       init();
+      users = getList();
 
     }
 
@@ -92,6 +89,5 @@ serviceApp.controller('usersCtrl', function($scope, Users){
     $scope.refresh = function(){
       Users.refreshList();
       $scope.$broadcast('scroll.refreshComplete');
-      $scope.$apply()
     }
 });
