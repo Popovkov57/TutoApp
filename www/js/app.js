@@ -27,11 +27,12 @@ serviceApp.factory('Users',function($http) {
 
                 var tempUser = data.results[i].user;
 
-                users[i]={"firstname": tempUser.name.first,
-                "lastname": tempUser.name.last,
-                "avatarURL": tempUser.picture.thumbnail,
-                "city": tempUser.location.city,
-                "street": tempUser.location.street
+                users[i]={
+                  "firstname": tempUser.name.first,
+                  "lastname": tempUser.name.last,
+                  "avatarURL": tempUser.picture.thumbnail,
+                  "city": tempUser.location.city,
+                  "street": tempUser.location.street
                 };
             };
         });
