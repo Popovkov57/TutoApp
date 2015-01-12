@@ -91,5 +91,7 @@ serviceApp.controller('usersCtrl', function($scope, Users){
     }
     $scope.refresh = function(){
       Users.refreshList();
+      $scope.$broadcast('scroll.refreshComplete');
+      $scope.$apply()
     }
 });
