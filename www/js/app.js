@@ -65,15 +65,15 @@ serviceApp.factory('Users',function($http) {
       return users;
     }
 
-    var refreshList = function() {
-      users.splice(0,users.length);
+    var resetList = function() {
+      users=[];
       init();
     }
 
     return {
         init: init,
         addUser: addUser,
-        refreshList: refreshList,
+        resetList: resetList,
         getList: getList
     }
 });
@@ -85,7 +85,7 @@ serviceApp.controller('usersCtrl', function($scope, Users){
       Users.addUser();
     }
     $scope.refresh = function(){
-      Users.refreshList();
+      Users.resetList();
       $scope.$broadcast('scroll.refreshComplete');
       $scope.users = Users.getList();
     }
