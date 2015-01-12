@@ -14,79 +14,91 @@ serviceApp.run(function($ionicPlatform) {
   });
 })
 
-serviceApp.factory('Users',function($http) {
+serviceApp.factory('Users',function($http, $q) {
 
     var users = [];
     var user;
 
-    var init = function(){
+    var getList = function(){
 
-        $http.get('http://api.randomuser.me/?results=5').success(function(data){
+      var deffered = $q.defer();
 
-            for(var i=0; i<data.results.length; i++){
-
-                var tempUser = data.results[i].user;
-
-                users[i]={
-                  "firstname": tempUser.name.first,
-                  "lastname": tempUser.name.last,
-                  "avatarURL": tempUser.picture.thumbnail,
-                  "city": tempUser.location.city,
-                  "street": tempUser.location.street
-                };
+      $http.get('http://api.randomuser.me/?results=5')
+        .success(function(data, status){
+          for(var i=0; i<data.results.length; i++){
+            var tempUser = data.results[i].user;
+            users[i]={
+              "firstname": tempUser.name.first,
+              "lastname": tempUser.name.last,
+              "avatarURL": tempUser.picture.thumbnail,
+              "city": tempUser.location.city,
+              "street": tempUser.location.street
             };
+          };
+          deffered.resolve(users);
+        })
+        .error(function(data, status){
+          deffered.reject("Impossible de récupérer les données");
         });
-
+        return deffered.promise;
     }
 
     var getOneRandomUser = function(){
-      $http.get('http://api.randomuser.me/?results=1').success(function(data){
-        var tempUser = data.results[0].user;
-        user = {
-          "firstname": tempUser.name.first,
-          "lastname": tempUser.name.last,
-          "avatarURL": tempUser.picture.thumbnail,
-          "city": tempUser.location.city,
-          "street": tempUser.location.street
-        };
-      });
 
-      return user;
+      var deffered = $q.defer();
 
+      $http.get('http://api.randomuser.me/?results=1')
+        .success(function(data, status){
+          var tempUser = data.results[0].user;
+          user = {
+            "firstname": tempUser.name.first,
+            "lastname": tempUser.name.last,
+            "avatarURL": tempUser.picture.thumbnail,
+            "city": tempUser.location.city,
+            "street": tempUser.location.street
+          };
+          deffered.resolve(user);
+        })
+        .error(function(data, status){
+          deffered.reject("Immpossible de récupérer les données");
+        });
+      return deffered.promise;
     }
 
     var addUser = function(){
-      if(typeof getOneRandomUser() != 'undefined'){
-        users.push(getOneRandomUser());
-      };
-    }
-
-    var getList = function() {
-      return users;
-    }
-
-    var resetList = function() {
-      users=[];
-      init();
+      var userTemp;
+      getOneRandomUser().then(function(user){
+        userTemp = user;
+        users.push(userTemp);
+      }, function(msg){
+        alert(msg);
+      });
     }
 
     return {
-        init: init,
-        addUser: addUser,
-        resetList: resetList,
-        getList: getList
+      addUser: addUser,
+      getList: getList
     }
 });
 
 serviceApp.controller('usersCtrl', function($scope, Users){
-    Users.init();
-    $scope.users = Users.getList();
+
+    Users.getList().then(function(users){
+      $scope.users = users;
+    }, function(msg){
+      alert(msg);
+    });
+
     $scope.add = function(){
       Users.addUser();
     }
+
     $scope.refresh = function(){
-      Users.resetList();
+      Users.getList().then(function(users){
+        $scope.users = users;
+      }, function(msg){
+        alert(msg);
+      });
       $scope.$broadcast('scroll.refreshComplete');
-      $scope.users = Users.getList();
     }
 });
