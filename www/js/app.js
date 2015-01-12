@@ -17,6 +17,7 @@ serviceApp.run(function($ionicPlatform) {
 serviceApp.factory('Users',function($http) {
 
     var users = [];
+    var user;
 
     var init = function(){
 
@@ -26,39 +27,40 @@ serviceApp.factory('Users',function($http) {
 
                 var tempUser = data.results[i].user;
 
-                users[i]=
-                    {"firstname": tempUser.name.first,
-                     "lastname": tempUser.name.last,
-                     "avatarURL": tempUser.picture.thumbnail,
-                     "city": tempUser.location.city,
-                     "street": tempUser.location.street
-                    };
+                users[i]={"firstname": tempUser.name.first,
+                "lastname": tempUser.name.last,
+                "avatarURL": tempUser.picture.thumbnail,
+                "city": tempUser.location.city,
+                "street": tempUser.location.street
+                };
             };
-
         });
+
     }
 
-
-
     var add = function($scope){
-
-      var user ={"firstname": "Max",
-      "lastname": "Lafarce",
-      "avatarURL": "http://url.fr",
-      "city": "New-York",
-      "street": "N-Y street"
-      };
-
       $scope.push = function() {
-        console.log(user);
-
-        users.push(user);
+        users.push(getOneRandomUser());
       }
+    }
+
+    var getOneRandomUser = function(){
+      $http.get('http://api.randomuser.me/?results=1').success(function(data){
+        var tempUser = data.results[0].user;
+        user = {"firstname": tempUser.name.first,
+        "lastname": tempUser.name.last,
+        "avatarURL": tempUser.picture.thumbnail,
+        "city": tempUser.location.city,
+        "street": tempUser.location.street
+        };
+      });
+
+      return user;
 
     }
 
     var getList = function() {
-        return users;
+      return users;
     }
 
     return {
@@ -67,10 +69,6 @@ serviceApp.factory('Users',function($http) {
         getList: getList
     }
 });
-
-
-
-
 
 serviceApp.controller('usersCtrl', function($scope, Users){
     Users.init();

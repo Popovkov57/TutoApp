@@ -29,9 +29,9 @@
       </ion-header-bar>
       <ion-content>
           <div ng-controller="usersCtrl">
-              <button class="button" ng-click="push()">Enter</button>
+              <button class="button" ng-click="push()">Add user</button>
               <div class="list">
-                  <a class="item item-avatar" href="#" ng-repeat="user in users">
+                  <a class="item item-avatar" href="#" ng-repeat="user in users track by $index">
                      <img src="{{user.avatarURL}}">
                       <h2>{{user.firstname}} {{user.lastname}}</h2>
                       <p>
