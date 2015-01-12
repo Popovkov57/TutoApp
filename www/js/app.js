@@ -68,8 +68,6 @@ serviceApp.factory('Users',function($http) {
     var refreshList = function() {
       users.splice(0,users.length);
       init();
-      users = getList();
-
     }
 
     return {
@@ -89,5 +87,6 @@ serviceApp.controller('usersCtrl', function($scope, Users){
     $scope.refresh = function(){
       Users.refreshList();
       $scope.$broadcast('scroll.refreshComplete');
+      $scope.users = Users.getList();
     }
 });
