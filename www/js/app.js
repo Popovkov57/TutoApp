@@ -42,11 +42,12 @@ serviceApp.factory('Users',function($http) {
     var getOneRandomUser = function(){
       $http.get('http://api.randomuser.me/?results=1').success(function(data){
         var tempUser = data.results[0].user;
-        user = {"firstname": tempUser.name.first,
-        "lastname": tempUser.name.last,
-        "avatarURL": tempUser.picture.thumbnail,
-        "city": tempUser.location.city,
-        "street": tempUser.location.street
+        user = {
+          "firstname": tempUser.name.first,
+          "lastname": tempUser.name.last,
+          "avatarURL": tempUser.picture.thumbnail,
+          "city": tempUser.location.city,
+          "street": tempUser.location.street
         };
       });
 
