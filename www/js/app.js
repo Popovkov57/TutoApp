@@ -4,7 +4,7 @@ var users = [];
 
 serviceApp.run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
-    
+
     if(window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
@@ -14,41 +14,68 @@ serviceApp.run(function($ionicPlatform) {
   });
 })
 
-serviceApp.factory('Users', function($http) {
-    
-    var users = []; 
-    
+serviceApp.factory('Users',function($http) {
+
+    var users = [];
+    var user;
+
     var init = function(){
-        
+
         $http.get('http://api.randomuser.me/?results=5').success(function(data){
-         
+
             for(var i=0; i<data.results.length; i++){
 
                 var tempUser = data.results[i].user;
 
-                users[i]= 
-                    {"firstname": tempUser.name.first,
-                     "lastname": tempUser.name.last,
-                     "avatarURL": tempUser.picture.thumbnail,
-                     "city": tempUser.location.city,
-                     "street": tempUser.location.street
-                    };
+                users[i]={
+                  "firstname": tempUser.name.first,
+                  "lastname": tempUser.name.last,
+                  "avatarURL": tempUser.picture.thumbnail,
+                  "city": tempUser.location.city,
+                  "street": tempUser.location.street
+                };
             };
-            
         });
+
     }
-    
+
+    var getOneRandomUser = function(){
+      $http.get('http://api.randomuser.me/?results=1').success(function(data){
+        var tempUser = data.results[0].user;
+        user = {
+          "firstname": tempUser.name.first,
+          "lastname": tempUser.name.last,
+          "avatarURL": tempUser.picture.thumbnail,
+          "city": tempUser.location.city,
+          "street": tempUser.location.street
+        };
+      });
+
+      return user;
+
+    }
+
+    var addUser = function(){
+      if(typeof getOneRandomUser() != 'undefined'){
+        users.push(getOneRandomUser());
+      };
+    }
+
     var getList = function() {
-        return users;
+      return users;
     }
-    
+
     return {
         init: init,
+        addUser: addUser,
         getList: getList
     }
 });
 
-serviceApp.controller('serviceAppController', function($scope, Users){
+serviceApp.controller('usersCtrl', function($scope, Users){
     Users.init();
     $scope.users = Users.getList();
-});   
+    $scope.add = function(){
+      Users.addUser();
+    }
+});
