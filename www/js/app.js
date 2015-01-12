@@ -14,14 +14,14 @@ serviceApp.run(function($ionicPlatform) {
   });
 })
 
-serviceApp.factory('Users',function($http, $ionicLoading) {
+serviceApp.factory('Users',function($http) {
 
     var users = [];
     var user;
 
-    $ionicLoading.show({
-      template: 'loading'
-    })
+    //$ionicLoading.show({
+    //  template: 'loading'
+    //})
 
     var init = function(){
 
