@@ -39,12 +39,6 @@ serviceApp.factory('Users',function($http) {
 
     }
 
-    var add = function($scope){
-      $scope.push = function() {
-        users.push(getOneRandomUser());
-      }
-    }
-
     var getOneRandomUser = function(){
       $http.get('http://api.randomuser.me/?results=1').success(function(data){
         var tempUser = data.results[0].user;
@@ -60,13 +54,19 @@ serviceApp.factory('Users',function($http) {
 
     }
 
+    var addUser = function(){
+      if(typeof getOneRandomUser() != 'undefined'){
+        users.push(getOneRandomUser());
+      };
+    }
+
     var getList = function() {
       return users;
     }
 
     return {
         init: init,
-        add: add,
+        addUser: addUser,
         getList: getList
     }
 });
@@ -74,5 +74,7 @@ serviceApp.factory('Users',function($http) {
 serviceApp.controller('usersCtrl', function($scope, Users){
     Users.init();
     $scope.users = Users.getList();
-    Users.add($scope);
+    $scope.add = function(){
+      Users.addUser();
+    }
 });

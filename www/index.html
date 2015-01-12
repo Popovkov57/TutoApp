@@ -29,7 +29,7 @@
       </ion-header-bar>
       <ion-content>
           <div ng-controller="usersCtrl">
-              <button class="button button-outline button-outline button-block button-positive icon-left ion-person-stalker" ng-click="push()">Add user</button>
+              <button class="button button-outline button-outline button-block button-positive icon-left ion-person-stalker" ng-click="add()">Add user</button>
               <div class="list">
                   <a class="item item-avatar" href="#" ng-repeat="user in users track by $index">
                      <img src="{{user.avatarURL}}">
