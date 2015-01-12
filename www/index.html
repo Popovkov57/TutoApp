@@ -11,7 +11,7 @@
     <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
     <link href="css/ionic.app.css" rel="stylesheet">
     -->
-      
+
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
@@ -28,7 +28,8 @@
         <h1 class="title">Ionic Blank Starter</h1>
       </ion-header-bar>
       <ion-content>
-          <div ng-controller="serviceAppController">
+          <div ng-controller="usersCtrl">
+              <button class="button" ng-click="push()">Enter</button>
               <div class="list">
                   <a class="item item-avatar" href="#" ng-repeat="user in users">
                      <img src="{{user.avatarURL}}">
@@ -38,7 +39,7 @@
                           {{user.city}}<br />
                           {{user.street}}
                       </p>
-                      
+
                   </a>
               </div>
           </div>
