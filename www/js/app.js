@@ -65,9 +65,15 @@ serviceApp.factory('Users',function($http) {
       return users;
     }
 
+    var resetList = function() {
+      users=[];
+      init();
+    }
+
     return {
         init: init,
         addUser: addUser,
+        resetList: resetList,
         getList: getList
     }
 });
@@ -77,5 +83,10 @@ serviceApp.controller('usersCtrl', function($scope, Users){
     $scope.users = Users.getList();
     $scope.add = function(){
       Users.addUser();
+    }
+    $scope.refresh = function(){
+      Users.resetList();
+      $scope.$broadcast('scroll.refreshComplete');
+      $scope.users = Users.getList();
     }
 });
