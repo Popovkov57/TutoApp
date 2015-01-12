@@ -38,17 +38,24 @@ serviceApp.factory('Users',function($http) {
         });
     }
 
+
+
     var add = function($scope){
 
+      var user ={"firstname": "Max",
+      "lastname": "Lafarce",
+      "avatarURL": "http://url.fr",
+      "city": "New-York",
+      "street": "N-Y street"
+      };
+
       $scope.push = function() {
-        console.log("Je suis là !!");
+        console.log(user);
+
+        users.push(user);
       }
 
     }
-
-
-
-
 
     var getList = function() {
         return users;
