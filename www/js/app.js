@@ -14,10 +14,14 @@ serviceApp.run(function($ionicPlatform) {
   });
 })
 
-serviceApp.factory('Users',function($http) {
+serviceApp.factory('Users',function($http, $ionicLoading) {
 
     var users = [];
     var user;
+
+    $ionicLoading.show({
+      template: 'loading'
+    })
 
     var init = function(){
 
@@ -65,9 +69,16 @@ serviceApp.factory('Users',function($http) {
       return users;
     }
 
+    var refreshList = function() {
+      users.splice(0,users.length);
+      init();
+
+    }
+
     return {
         init: init,
         addUser: addUser,
+        refreshList: refreshList,
         getList: getList
     }
 });
@@ -77,5 +88,8 @@ serviceApp.controller('usersCtrl', function($scope, Users){
     $scope.users = Users.getList();
     $scope.add = function(){
       Users.addUser();
+    }
+    $scope.refresh = function(){
+      Users.refreshList();
     }
 });
