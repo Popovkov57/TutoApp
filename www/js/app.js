@@ -60,6 +60,7 @@ serviceApp.factory('Users',function($http, $q) {
             "street": tempUser.location.street
           };
           deffered.resolve(user);
+
         })
         .error(function(data, status){
           deffered.reject("Immpossible de récupérer les données");
@@ -81,10 +82,19 @@ serviceApp.factory('Users',function($http, $q) {
     }
 });
 
-serviceApp.controller('usersCtrl', function($scope, Users){
+
+
+
+serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading){
+
+    $ionicLoading.show({
+      template: 'Loading...'
+    });
 
     Users.getList().then(function(users){
       $scope.users = users;
+      $ionicLoading.hide();
+
     }, function(msg){
       alert(msg);
     });
@@ -94,11 +104,15 @@ serviceApp.controller('usersCtrl', function($scope, Users){
     }
 
     $scope.refresh = function(){
+      $ionicLoading.show();
       Users.getList().then(function(users){
         $scope.users = users;
+        $ionicLoading.hide();
+
       }, function(msg){
         alert(msg);
       });
       $scope.$broadcast('scroll.refreshComplete');
     }
+
 });
