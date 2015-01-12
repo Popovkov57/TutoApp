@@ -23,6 +23,8 @@ serviceApp.factory('Users',function($http, $q) {
 
       var deffered = $q.defer();
 
+      users =[];
+
       $http.get('http://api.randomuser.me/?results=5')
         .success(function(data, status){
           for(var i=0; i<data.results.length; i++){
@@ -66,10 +68,8 @@ serviceApp.factory('Users',function($http, $q) {
     }
 
     var addUser = function(){
-      var userTemp;
       getOneRandomUser().then(function(user){
-        userTemp = user;
-        users.push(userTemp);
+        users.unshift(user);
       }, function(msg){
         alert(msg);
       });
