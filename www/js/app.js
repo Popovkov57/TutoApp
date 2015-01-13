@@ -93,20 +93,11 @@ serviceApp.factory('Users',function($http, $q, $stateParams) {
     }
 
     var getUser = function(id){
-
-      console.log(users);
-
-      console.log($stateParams.id);
-
       for(i=0; i<users.length; i++){
-        //console.log(users[i].id);
-
         if(users[i].id == id){
            user = users[i];
         }
-
       }
-
       return user;
     }
 
