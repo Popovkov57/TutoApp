@@ -1,7 +1,12 @@
 <ion-view>
-  <ion-content ng-controller="usersCtrl">
+  <ion-content>
 
-    {{user.firstname}}
+    <img src="{{user.avatarURL}}">
+    <h2>{{user.firstname}} {{user.lastname}}</h2>
+    <p><strong>Adresse</strong><br/>
+      {{user.city}}<br />
+      {{user.street}}
+    </p>
 
   </ion-content>
 </ion-view>

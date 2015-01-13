@@ -18,15 +18,17 @@ serviceApp.run(function($ionicPlatform) {
   $stateProvider
   .state('home', {
     url: '',
-    templateUrl: 'home.html'
+    templateUrl: 'home.html',
+    controller: 'usersCtrl'
   })
   .state('userview', {
-    url: '/userview',
-    templateUrl: 'userview.html'
+    url: '/userview/:id',
+    templateUrl: 'userview.html',
+    controller: 'userCtrl'
   });
 })
 
-serviceApp.factory('Users',function($http, $q) {
+serviceApp.factory('Users',function($http, $q, $stateParams) {
 
     var users = [];
     var user;
@@ -46,7 +48,8 @@ serviceApp.factory('Users',function($http, $q) {
               "lastname": tempUser.name.last,
               "avatarURL": tempUser.picture.thumbnail,
               "city": tempUser.location.city,
-              "street": tempUser.location.street
+              "street": tempUser.location.street,
+              "id": data.results[i].seed
             };
           };
           deffered.resolve(users);
@@ -69,7 +72,8 @@ serviceApp.factory('Users',function($http, $q) {
             "lastname": tempUser.name.last,
             "avatarURL": tempUser.picture.thumbnail,
             "city": tempUser.location.city,
-            "street": tempUser.location.street
+            "street": tempUser.location.street,
+            "id": data.results[0].seed
           };
           deffered.resolve(user);
 
@@ -88,13 +92,32 @@ serviceApp.factory('Users',function($http, $q) {
       });
     }
 
+    var getUser = function(id){
+
+      console.log(users);
+
+      console.log($stateParams.id);
+
+      for(i=0; i<users.length; i++){
+        //console.log(users[i].id);
+
+        if(users[i].id == id){
+           user = users[i];
+        }
+
+      }
+
+      return user;
+    }
+
     return {
       addUser: addUser,
-      getList: getList
+      getList: getList,
+      getUser: getUser
     }
 });
 
-serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading){
+serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading, $stateParams){
 
     $ionicLoading.show({
       template: 'Loading...'
@@ -124,12 +147,8 @@ serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading){
       $scope.$broadcast('scroll.refreshComplete');
     }
 
-    $scope.clickUser = function(user){
-      console.log(user.firstname);
-      $scope.user = user;
-    }
-
-
-
-
 });
+
+serviceApp.controller('userCtrl', function($scope, Users, $stateParams){
+  $scope.user = Users.getUser($stateParams.id);
+})

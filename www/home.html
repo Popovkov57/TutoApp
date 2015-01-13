@@ -1,12 +1,12 @@
 <ion-view>
-  <ion-content ng-controller="usersCtrl">
+  <ion-content>
 
     <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh()">
     </ion-refresher>
 
     <div class="list">
 
-      <a class="item item-avatar" href="#/userview" ng-repeat="user in users track by $index" ng-click="clickUser(user)">
+      <a class="item item-avatar"  ng-repeat="user in users track by $index" href="#/userview/{{user.id}}">
 
         <img src="{{user.avatarURL}}">
         <h2>{{user.firstname}} {{user.lastname}}</h2>
