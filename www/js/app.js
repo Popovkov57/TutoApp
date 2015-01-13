@@ -19,6 +19,10 @@ serviceApp.run(function($ionicPlatform) {
   .state('home', {
     url: '',
     templateUrl: 'home.html'
+  })
+  .state('userview', {
+    url: '/userview',
+    templateUrl: 'userview.html'
   });
 })
 
