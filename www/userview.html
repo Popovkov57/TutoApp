@@ -1,12 +1,22 @@
 <ion-view>
   <ion-content>
 
-    <img src="{{user.avatarURL}}">
-    <h2>{{user.firstname}} {{user.lastname}}</h2>
-    <p><strong>Adresse</strong><br/>
-      {{user.city}}<br />
-      {{user.street}}
-    </p>
+    <div class="list card">
+
+      <div class="item item-avatar">
+
+        <img src="{{user.avatarURL}}"><h2>{{user.firstname}} {{user.lastname}}</h2>
+
+      </div>
+
+      <a class="item item-icon-left assertive" href="#">
+        <p><strong>Adresse</strong><br/>
+          {{user.city}}<br />
+          {{user.street}}
+        </p>
+      </a>
+
+    </div>
 
   </ion-content>
 </ion-view>
