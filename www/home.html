@@ -6,7 +6,7 @@
 
     <div class="list">
 
-      <a class="item item-avatar" href="#/userview" ng-repeat="user in users track by $index">
+      <a class="item item-avatar" href="#/userview" ng-repeat="user in users track by $index" ng-click="clickUser(user)">
 
         <img src="{{user.avatarURL}}">
         <h2>{{user.firstname}} {{user.lastname}}</h2>

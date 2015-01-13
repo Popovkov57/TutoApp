@@ -124,4 +124,12 @@ serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading){
       $scope.$broadcast('scroll.refreshComplete');
     }
 
+    $scope.clickUser = function(user){
+      console.log(user.firstname);
+      $scope.user = user;
+    }
+
+
+
+
 });
