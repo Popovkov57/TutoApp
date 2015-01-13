@@ -1,0 +1,23 @@
+<ion-view>
+  <ion-content ng-controller="usersCtrl">
+
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh()">
+    </ion-refresher>
+
+    <div class="list">
+
+      <a class="item item-avatar" href="#" ng-repeat="user in users track by $index">
+
+        <img src="{{user.avatarURL}}">
+        <h2>{{user.firstname}} {{user.lastname}}</h2>
+        <p><strong>Adresse</strong><br/>
+          {{user.city}}<br />
+          {{user.street}}
+        </p>
+
+      </a>
+
+    </div>
+
+  </ion-content>
+</ion-view>

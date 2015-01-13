@@ -14,6 +14,14 @@ serviceApp.run(function($ionicPlatform) {
   });
 })
 
+.config(function($stateProvider) {
+  $stateProvider
+  .state('home', {
+    url: '',
+    templateUrl: 'home.html'
+  });
+})
+
 serviceApp.factory('Users',function($http, $q) {
 
     var users = [];
