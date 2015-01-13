@@ -82,9 +82,6 @@ serviceApp.factory('Users',function($http, $q) {
     }
 });
 
-
-
-
 serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading){
 
     $ionicLoading.show({
