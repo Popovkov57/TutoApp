@@ -105,7 +105,6 @@ serviceApp.factory('Users',function($http, $q, $stateParams) {
     var deleteUser = function(id){
       for(i=0; i<users.length; i++){
         if(users[i].id == id){
-          //delete users[i];
           users.splice(i,1);
         }
       }
@@ -156,10 +155,6 @@ serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading, $state
 
     $scope.data = {
       showDelete: false
-    };
-
-    $scope.onItemDelete = function(user) {
-      $scope.users.splice($scope.users.indexOf(user), 1);
     };
 
 });

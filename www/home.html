@@ -17,7 +17,7 @@
 
     <ion-list show-delete="data.showDelete">
 
-      <ion-item item="item"  ng-repeat="user in users track by $index" href="#/user/{{user.id}}" class="item item-avatar item-button-right item-remove-animate">
+      <ion-item item="item"  ng-repeat="user in users track by $index" href="#/user/{{user.id}}" class="item item-avatar">
 
         <img ng-src="{{user.avatarURL}}">
         <h2>{{user.firstname}} {{user.lastname}}</h2>
@@ -26,7 +26,7 @@
           {{user.street}}
         </p>
 
-        <ion-delete-button class="ion-minus-circled" ng-click="onItemDelete(user)">
+        <ion-delete-button class="ion-minus-circled" ng-click="delete(user.id)">
         </ion-delete-button>
 
       </ion-item>
