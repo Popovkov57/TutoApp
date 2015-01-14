@@ -106,6 +106,7 @@ serviceApp.factory('Users',function($http, $q, $stateParams) {
       for(i=0; i<users.length; i++){
         if(users[i].id == id){
           users.splice(i,1);
+          break;
         }
       }
     }
