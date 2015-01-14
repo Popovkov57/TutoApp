@@ -6,7 +6,7 @@
 
     <div class="list">
 
-      <a class="item item-avatar item-button-right item-icon-right"  ng-repeat="user in users track by $index" href="#/userview/{{user.id}}">
+      <a class="item item-avatar item-button-right item-icon-right"  ng-repeat="user in users track by $index" href="#/user/{{user.id}}">
 
         <img ng-src="{{user.avatarURL}}">
         <h2>{{user.firstname}} {{user.lastname}}</h2>

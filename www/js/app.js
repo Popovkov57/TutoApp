@@ -17,12 +17,12 @@ serviceApp.run(function($ionicPlatform) {
 .config(function($stateProvider) {
   $stateProvider
   .state('home', {
-    url: '',
+    url: '/users',
     templateUrl: 'home.html',
     controller: 'usersCtrl'
   })
   .state('userview', {
-    url: '/userview/:id',
+    url: '/user/:id',
     templateUrl: 'userview.html',
     controller: 'userCtrl'
   });
