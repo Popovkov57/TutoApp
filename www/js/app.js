@@ -26,7 +26,7 @@ serviceApp.run(function($ionicPlatform) {
     templateUrl: 'userview.html',
     controller: 'userCtrl'
   });
-  
+
 })
 
 serviceApp.factory('Users',function($http, $q, $stateParams) {
@@ -153,6 +153,14 @@ serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading, $state
     $scope.delete = function(id){
       Users.deleteUser(id);
     }
+
+    $scope.data = {
+      showDelete: false
+    };
+
+    $scope.onItemDelete = function(user) {
+      $scope.users.splice($scope.users.indexOf(user), 1);
+    };
 
 });
 
