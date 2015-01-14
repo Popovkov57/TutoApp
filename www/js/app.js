@@ -14,7 +14,21 @@ serviceApp.run(function($ionicPlatform) {
   });
 })
 
-serviceApp.factory('Users',function($http, $q) {
+.config(function($stateProvider) {
+  $stateProvider
+  .state('home', {
+    url: '/users',
+    templateUrl: 'home.html',
+    controller: 'usersCtrl'
+  })
+  .state('userview', {
+    url: '/user/:id',
+    templateUrl: 'userview.html',
+    controller: 'userCtrl'
+  });
+})
+
+serviceApp.factory('Users',function($http, $q, $stateParams) {
 
     var users = [];
     var user;
@@ -34,7 +48,8 @@ serviceApp.factory('Users',function($http, $q) {
               "lastname": tempUser.name.last,
               "avatarURL": tempUser.picture.thumbnail,
               "city": tempUser.location.city,
-              "street": tempUser.location.street
+              "street": tempUser.location.street,
+              "id": data.results[i].seed
             };
           };
           deffered.resolve(users);
@@ -57,7 +72,8 @@ serviceApp.factory('Users',function($http, $q) {
             "lastname": tempUser.name.last,
             "avatarURL": tempUser.picture.thumbnail,
             "city": tempUser.location.city,
-            "street": tempUser.location.street
+            "street": tempUser.location.street,
+            "id": data.results[0].seed
           };
           deffered.resolve(user);
 
@@ -76,16 +92,34 @@ serviceApp.factory('Users',function($http, $q) {
       });
     }
 
+    var getUser = function(id){
+      for(i=0; i<users.length; i++){
+        if(users[i].id == id){
+           user = users[i];
+           return user;
+        }
+      }
+    }
+
+    var deleteUser = function(id){
+      for(i=0; i<users.length; i++){
+        if(users[i].id == id){
+          //delete users[i];
+          users.splice(i,1);
+        }
+      }
+      console.log(users);
+    }
+
     return {
       addUser: addUser,
-      getList: getList
+      getList: getList,
+      getUser: getUser,
+      deleteUser: deleteUser
     }
 });
 
-
-
-
-serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading){
+serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading, $stateParams){
 
     $ionicLoading.show({
       template: 'Loading...'
@@ -115,4 +149,12 @@ serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading){
       $scope.$broadcast('scroll.refreshComplete');
     }
 
+    $scope.delete = function(id){
+      Users.deleteUser(id);
+    }
+
 });
+
+serviceApp.controller('userCtrl', function($scope, Users, $stateParams){
+  $scope.user = Users.getUser($stateParams.id);
+})
