@@ -26,6 +26,7 @@ serviceApp.run(function($ionicPlatform) {
     templateUrl: 'userview.html',
     controller: 'userCtrl'
   });
+  
 })
 
 serviceApp.factory('Users',function($http, $q, $stateParams) {
