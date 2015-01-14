@@ -96,15 +96,26 @@ serviceApp.factory('Users',function($http, $q, $stateParams) {
       for(i=0; i<users.length; i++){
         if(users[i].id == id){
            user = users[i];
+           return user;
         }
       }
-      return user;
+    }
+
+    var deleteUser = function(id){
+      for(i=0; i<users.length; i++){
+        if(users[i].id == id){
+          //delete users[i];
+          users.splice(i,1);
+        }
+      }
+      console.log(users);
     }
 
     return {
       addUser: addUser,
       getList: getList,
-      getUser: getUser
+      getUser: getUser,
+      deleteUser: deleteUser
     }
 });
 
@@ -136,6 +147,10 @@ serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading, $state
         alert(msg);
       });
       $scope.$broadcast('scroll.refreshComplete');
+    }
+
+    $scope.delete = function(id){
+      Users.deleteUser(id);
     }
 
 });

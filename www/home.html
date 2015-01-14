@@ -1,4 +1,4 @@
-<ion-view>
+<ion-view view-title="Users App">
   <ion-content>
 
     <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh()">
@@ -6,14 +6,17 @@
 
     <div class="list">
 
-      <a class="item item-avatar"  ng-repeat="user in users track by $index" href="#/userview/{{user.id}}">
+      <a class="item item-avatar item-button-right item-icon-right"  ng-repeat="user in users track by $index" href="#/userview/{{user.id}}">
 
-        <img src="{{user.avatarURL}}">
+        <img ng-src="{{user.avatarURL}}">
         <h2>{{user.firstname}} {{user.lastname}}</h2>
         <p><strong>Adresse</strong><br/>
           {{user.city}}<br />
           {{user.street}}
         </p>
+        <i class="icon ion-chevron-right" ></i>
+          <!-- <i class="icon ion-close-round" ng-click="delete(user.id)"></i> -->
+
 
       </a>
 
