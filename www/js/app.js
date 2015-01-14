@@ -19,7 +19,7 @@ serviceApp.run(function($ionicPlatform) {
   .state('home', {
     url: '/users',
     templateUrl: 'home.html',
-    controller: 'usersCtrl'
+    controller:'usersCtrl'
   })
   .state('userview', {
     url: '/user/:id',
@@ -166,4 +166,31 @@ serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading, $state
 
 serviceApp.controller('userCtrl', function($scope, Users, $stateParams){
   $scope.user = Users.getUser($stateParams.id);
+})
+
+
+
+serviceApp.controller('MainCtrl', function($scope, $ionicModal) {
+
+  $ionicModal.fromTemplateUrl('contact-modal.html', {
+
+    scope: $scope,
+    animation: 'slide-in-up'
+
+  }).then(function(modal) {
+    $scope.modal = modal
+  })
+
+  $scope.openModal = function() {
+
+    $scope.modal.show()
+  }
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+  };
+
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
 })

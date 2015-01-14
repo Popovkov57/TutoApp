@@ -1,18 +1,11 @@
 <ion-view view-title="Users">
 
-  <ion-nav-bar class="bar-positive">
+  <ion-nav-bar class="bar-positive" ng-controller="MainCtrl">
 
-    <ion-nav-buttons side="left">
-      <button class="button button-icon icon ion-ios7-minus-outline" ng-click="showButton.showDelete = !showButton.showDelete"></button>
-    </ion-nav-buttons>
 
     <ion-nav-buttons side="right">
 
-      <button class="button button-clear ion-person-stalker" ng-click="add()">+</button>
-
-      <button class="button" ng-click="showButton.showDelete = false; showButton.showReorder = !showButton.showReorder">
-        Reorder
-      </button>
+      <button class="button button-clear ion-person-stalker" ng-click="openModal()">+</button>
 
     </ion-nav-buttons>
 
@@ -24,19 +17,15 @@
     <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh()">
     </ion-refresher>
 
-    <ion-list show-delete="showButton.showDelete" show-reorder="showButton.showReorder" can-swipe="listCanSwipe">
+    <ion-list show-delete="showButton.showDelete" show-reorder="showButton.showReorder">
 
-      <ion-item  class="item item-avatar item-remove-animate" ng-repeat="user in users" href="#/user/{{user.id}}" >
+      <ion-item  class="item item-avatar item-remove-animate" ng-repeat="user in users" href="#/user/{{user.id}}" on-hold="showButton.showDelete = false; showButton.showReorder = !showButton.showReorder" >
 
         <img ng-src="{{user.avatarURL}}">
         <h2>{{user.firstname}} {{user.lastname}}</h2>
-        <p><strong>Adresse</strong><br/>
-          {{user.city}}<br />
-          {{user.street}}
-        </p>
 
-        <ion-delete-button class="ion-minus-circled" ng-click="delete(user.id)">
-        </ion-delete-button>
+        <ion-option-button class="button-assertive ion-close-circled" ng-click="delete(user.id)">
+        </ion-option-button>
 
         <ion-reorder-button class="ion-navicon" on-reorder="moveItem(user, $fromIndex, $toIndex)"></ion-reorder-button>
 
@@ -45,4 +34,6 @@
     </ion-list>
 
   </ion-content>
+
+
 </ion-view>
