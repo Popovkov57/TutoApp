@@ -115,7 +115,8 @@ serviceApp.factory('Users',function($http, $q, $stateParams) {
       addUser: addUser,
       getList: getList,
       getUser: getUser,
-      deleteUser: deleteUser
+      deleteUser: deleteUser,
+      getOneRandomUser: getOneRandomUser
     }
 });
 
@@ -170,7 +171,7 @@ serviceApp.controller('userCtrl', function($scope, Users, $stateParams){
 
 
 
-serviceApp.controller('MainCtrl', function($scope, $ionicModal) {
+serviceApp.controller('MainCtrl', function($scope, $ionicModal, Users) {
 
   $ionicModal.fromTemplateUrl('contact-modal.html', {
 
@@ -182,9 +183,14 @@ serviceApp.controller('MainCtrl', function($scope, $ionicModal) {
   })
 
   $scope.openModal = function() {
-
     $scope.modal.show()
-  }
+  };
+
+  Users.getOneRandomUser().then(function(user){
+    $scope.user = user;
+  }, function(msg){
+    alert(msg);
+  });
 
   $scope.closeModal = function() {
     $scope.modal.hide();
