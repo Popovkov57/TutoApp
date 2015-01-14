@@ -152,7 +152,7 @@ serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading, $state
       Users.deleteUser(id);
     }
 
-    $scope.data = {
+    $scope.showButton = {
       showDelete: false
     };
 
