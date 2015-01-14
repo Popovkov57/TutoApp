@@ -19,17 +19,20 @@
 
     <ion-list show-delete="showButton.showDelete" show-reorder="showButton.showReorder">
 
-      <ion-item  class="item item-avatar item-remove-animate" ng-repeat="user in users" href="#/user/{{user.id}}" on-hold="showButton.showDelete = false; showButton.showReorder = !showButton.showReorder" >
+      <div class="card" collection-repeat="user in users" collection-item-width="'80%'"
+      collection-item-height="'19%'">
+        <ion-item  class="item item-avatar item-remove-animate" href="#/user/{{user.id}}" on-hold="showButton.showDelete = false; showButton.showReorder = !showButton.showReorder" >
 
-        <img ng-src="{{user.avatarURL}}">
-        <h2>{{user.firstname}} {{user.lastname}}</h2>
+          <img ng-src="{{user.avatarURL}}">
+          <h2>{{user.firstname}} {{user.lastname}}</h2>
 
-        <ion-option-button class="button-assertive ion-close-circled" ng-click="delete(user.id)">
-        </ion-option-button>
+          <ion-option-button class="button-assertive ion-close-circled" ng-click="delete(user.id)">
+          </ion-option-button>
 
-        <ion-reorder-button class="ion-navicon" on-reorder="moveItem(user, $fromIndex, $toIndex)"></ion-reorder-button>
+          <ion-reorder-button class="ion-navicon" on-reorder="moveItem(user, $fromIndex, $toIndex)"></ion-reorder-button>
 
-      </ion-item>
+        </ion-item>
+      </div>
 
     </ion-list>
 
