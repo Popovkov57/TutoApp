@@ -1,23 +1,32 @@
-<ion-view>
+<ion-view view-title="Home">
 
-  <ion-header-bar align-title="left" class="bar-positive">
-    <div class="buttons">
+  <ion-nav-bar class="bar-positive">
+
+    <ion-nav-buttons side="left">
       <button class="button button-icon icon ion-ios7-minus-outline" ng-click="data.showDelete = !data.showDelete"></button>
-    </div>
-    <h1 class="title">User App</h1>
-    <div class="buttons">
-      <button class="button button-clear icon-left ion-person-stalker" ng-click="add()">+</button>
-    </div>
-  </ion-header-bar>
+    </ion-nav-buttons>
+
+    <ion-nav-buttons side="right">
+
+      <button class="button button-clear ion-person-stalker" ng-click="add()">+</button>
+
+      <button class="button" ng-click="data.showDelete = false; data.showReorder = !data.showReorder">
+        Reorder
+      </button>
+
+    </ion-nav-buttons>
+
+  </ion-nav-bar class="bar-positive">
+
 
   <ion-content>
 
     <ion-refresher pulling-text="Pull to refresh" on-refresh="refresh()">
     </ion-refresher>
 
-    <ion-list show-delete="data.showDelete">
+    <ion-list show-delete="data.showDelete" show-reorder="data.showReorder" can-swipe="listCanSwipe">
 
-      <ion-item item="item"  ng-repeat="user in users track by $index" href="#/user/{{user.id}}" class="item item-avatar">
+      <ion-item item="item"  class="item item-avatar item-remove-animate" ng-repeat="user in users" href="#/user/{{user.id}}" >
 
         <img ng-src="{{user.avatarURL}}">
         <h2>{{user.firstname}} {{user.lastname}}</h2>
@@ -28,6 +37,8 @@
 
         <ion-delete-button class="ion-minus-circled" ng-click="delete(user.id)">
         </ion-delete-button>
+
+        <ion-reorder-button class="ion-navicon" on-reorder="moveItem(user, $fromIndex, $toIndex)"></ion-reorder-button>
 
       </ion-item>
 

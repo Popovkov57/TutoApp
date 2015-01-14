@@ -108,7 +108,6 @@ serviceApp.factory('Users',function($http, $q, $stateParams) {
           users.splice(i,1);
         }
       }
-      console.log(users);
     }
 
     return {
@@ -155,6 +154,11 @@ serviceApp.controller('usersCtrl', function($scope, Users, $ionicLoading, $state
 
     $scope.data = {
       showDelete: false
+    };
+
+    $scope.moveItem = function(user, fromIndex, toIndex) {
+      $scope.users.splice(fromIndex, 1);
+      $scope.users.splice(toIndex, 0, user);
     };
 
 });
