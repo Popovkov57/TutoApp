@@ -85,12 +85,8 @@ serviceApp.factory('Users',function($http, $q, $stateParams) {
       return deffered.promise;
     }
 
-    var addUser = function(){
-      getOneRandomUser().then(function(user){
-        users.unshift(user);
-      }, function(msg){
-        alert(msg);
-      });
+    var addUser = function(user){
+      users.unshift(user);
     }
 
     var getUser = function(id){
@@ -184,16 +180,16 @@ serviceApp.controller('MainCtrl', function($scope, $ionicModal, Users) {
 
   $scope.openModal = function() {
     $scope.modal.show()
+    Users.getOneRandomUser().then(function(user){
+      $scope.user = user;
+    }, function(msg){
+      alert(msg);
+    });
   };
 
-  Users.getOneRandomUser().then(function(user){
-    $scope.user = user;
-  }, function(msg){
-    alert(msg);
-  });
-
-  $scope.closeModal = function() {
+  $scope.closeModal = function(user) {
     $scope.modal.hide();
+    Users.addUser(user);
   };
 
   $scope.$on('$destroy', function() {
