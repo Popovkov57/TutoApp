@@ -20,6 +20,7 @@ angular.module('serviceApp')
 
   $scope.refresh = function(){
     $ionicLoading.show();
+
     Users.getList().then(function(users){
       $scope.users = users;
       $ionicLoading.hide();
@@ -27,11 +28,12 @@ angular.module('serviceApp')
     }, function(msg){
       alert(msg);
     });
+
     $scope.$broadcast('scroll.refreshComplete');
   }
 
-  $scope.delete = function(id){
-    Users.deleteUser(id);
+  $scope.deleteUser = function(id){
+    Users.deleteUserById(id);
   }
 
   $scope.showButton = {
@@ -44,11 +46,9 @@ angular.module('serviceApp')
   };
 
 
-  $ionicModal.fromTemplateUrl('contact-modal.html', {
-
+  $ionicModal.fromTemplateUrl('templates/modal-user.html', {
     scope: $scope,
     animation: 'slide-in-up'
-
   }).then(function(modal) {
     $scope.modal = modal
   })
@@ -70,7 +70,6 @@ angular.module('serviceApp')
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
-
 
 })
 

@@ -38,6 +38,7 @@ angular.module('serviceApp')
 
     $http.get('http://api.randomuser.me/?results=1')
     .success(function(data, status){
+
       var tempUser = data.results[0].user;
       user = {
         "firstname": tempUser.name.first,
@@ -47,6 +48,7 @@ angular.module('serviceApp')
         "street": tempUser.location.street,
         "id": data.results[0].seed
       };
+
       deffered.resolve(user);
 
     })
@@ -69,7 +71,7 @@ angular.module('serviceApp')
     }
   }
 
-  var deleteUser = function(id){
+  var deleteUserById = function(id){
     for(i=0; i<users.length; i++){
       if(users[i].id == id){
         users.splice(i,1);
@@ -82,7 +84,7 @@ angular.module('serviceApp')
     addUser: addUser,
     getList: getList,
     getUserById: getUserById,
-    deleteUser: deleteUser,
+    deleteUserById: deleteUserById,
     getOneRandomUser: getOneRandomUser
   }
 });
