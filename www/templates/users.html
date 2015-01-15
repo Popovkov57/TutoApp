@@ -9,7 +9,7 @@
 
     </ion-nav-buttons>
 
-  </ion-nav-bar class="bar-positive">
+  </ion-nav-bar>
 
 
   <ion-content>
@@ -19,9 +19,10 @@
 
     <ion-list show-delete="showButton.showDelete" show-reorder="showButton.showReorder">
 
-      <div class="card" collection-repeat="user in users" collection-item-width="'80%'"
-      collection-item-height="'19%'">
-        <ion-item  class="item item-avatar item-remove-animate" href="#/user/{{user.id}}" on-hold="showButton.showDelete = false; showButton.showReorder = !showButton.showReorder" >
+      <div class="card item-avatar item-remove-animate" collection-repeat="user in users" collection-item-width="'100%'"
+      collection-item-height="'18%'" ng-style="{left: 0, right: 0}">
+        <ion-item  class="item item-avatar item-remove-animate" href="#/user/{{user.id}}"
+        on-hold="showButton.showDelete = false; showButton.showReorder = !showButton.showReorder" >
 
           <img ng-src="{{user.avatarURL}}">
           <h2>{{user.firstname}} {{user.lastname}}</h2>
