@@ -1,6 +1,6 @@
 angular.module('serviceApp')
 
-.controller('usersCtrl', function($scope, Users, $ionicLoading, $stateParams){
+.controller('usersCtrl', function($scope, Users, $ionicLoading, $stateParams, $ionicModal){
 
   $ionicLoading.show({
     template: 'Loading...'
@@ -43,15 +43,6 @@ angular.module('serviceApp')
     $scope.users.splice(toIndex, 0, user);
   };
 
-})
-
-.controller('userCtrl', function($scope, Users, $stateParams){
-  $scope.user = Users.getUser($stateParams.id);
-})
-
-
-
-.controller('MainCtrl', function($scope, $ionicModal, Users) {
 
   $ionicModal.fromTemplateUrl('contact-modal.html', {
 
@@ -79,4 +70,10 @@ angular.module('serviceApp')
   $scope.$on('$destroy', function() {
     $scope.modal.remove();
   });
+
+
+})
+
+.controller('userCtrl', function($scope, Users, $stateParams){
+  $scope.user = Users.getUserById($stateParams.id);
 })

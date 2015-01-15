@@ -60,7 +60,7 @@ angular.module('serviceApp')
     users.unshift(user);
   }
 
-  var getUser = function(id){
+  var getUserById = function(id){
     for(i=0; i<users.length; i++){
       if(users[i].id == id){
         user = users[i];
@@ -81,7 +81,7 @@ angular.module('serviceApp')
   return {
     addUser: addUser,
     getList: getList,
-    getUser: getUser,
+    getUserById: getUserById,
     deleteUser: deleteUser,
     getOneRandomUser: getOneRandomUser
   }
