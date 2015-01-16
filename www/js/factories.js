@@ -38,7 +38,7 @@ angular.module('serviceApp')
       deffered.resolve(users);
     }, function(msg){
       deffered.reject(msg);
-    })
+    });
     return deffered.promise;
   }
 
@@ -49,7 +49,7 @@ angular.module('serviceApp')
       deffered.resolve(users);
     }, function(msg){
       deffered.reject(msg);
-    })
+    });
     return deffered.promise;
   }
 

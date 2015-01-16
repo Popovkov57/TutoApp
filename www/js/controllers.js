@@ -37,8 +37,16 @@ angular.module('serviceApp')
   }
 
   $scope.showButton = {
-    showDelete: false
+    showDelete: false,
+    showReorder: false
   };
+
+  $scope.longPressItem = function(b){
+    $scope.showButton = {
+      showDelete: false,
+      showReorder: !b
+    };
+  }
 
   $scope.moveItem = function(user, fromIndex, toIndex) {
     $scope.users.splice(fromIndex, 1);
@@ -56,8 +64,8 @@ angular.module('serviceApp')
   $scope.openModal = function() {
     $scope.modal.show()
     Users.getOneRandomUser().then(function(users){
-      console.log(users.firstname);
-      $scope.user = users;
+
+      $scope.user = users[0];
     }, function(msg){
       alert(msg);
     });
