@@ -1,6 +1,6 @@
 angular.module('serviceApp')
 
-.factory('Users',function($http, $q, $stateParams) {
+.factory('Users',function($http, $q) {
 
   var users = [];
   var tempUsers = [];

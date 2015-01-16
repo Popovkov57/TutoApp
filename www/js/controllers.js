@@ -1,6 +1,6 @@
 angular.module('serviceApp')
 
-.controller('usersCtrl', function($scope, Users, $ionicLoading, $ionicModal){
+.controller('usersCtrl', function($scope, Users, $ionicLoading){
 
   $ionicLoading.show({
     template: 'Loading...'
@@ -48,14 +48,22 @@ angular.module('serviceApp')
     };
   }
 
-
   $scope.moveItem = function(user, fromIndex, toIndex) {
     $scope.users.splice(fromIndex, 1);
     $scope.users.splice(toIndex, 0, user);
   };
 
+})
 
-  $ionicModal.fromTemplateUrl('templates/modal-user.html', {
+.controller('userCtrl', function($scope, Users, $stateParams){
+  $scope.user = Users.getUserById($stateParams.id);
+})
+
+
+
+.controller('modalAddUserCtrl', function($scope, $ionicModal, Users){
+
+  $ionicModal.fromTemplateUrl('modal-user.html', {
     scope: $scope,
     animation: 'slide-in-up'
   }).then(function(modal) {
@@ -80,16 +88,4 @@ angular.module('serviceApp')
     $scope.modal.remove();
   });
 
-})
-
-.controller('userCtrl', function($scope, Users, $stateParams){
-  $scope.user = Users.getUserById($stateParams.id);
-})
-
-.filter('fullName', function(){
-  return function(user){
-    input = user;
-    var out = user.firstname + " " + user.lastname;
-    return out;
-  }
 })

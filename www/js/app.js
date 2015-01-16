@@ -24,5 +24,4 @@ angular.module('serviceApp', ['ionic'])
     templateUrl: 'templates/user.html',
     controller: 'userCtrl'
   });
-
 })
