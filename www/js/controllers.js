@@ -1,12 +1,13 @@
 angular.module('serviceApp')
 
-.controller('usersCtrl', function($scope, Users, $ionicLoading, $stateParams, $ionicModal){
+.controller('usersCtrl', function($scope, Users, $ionicLoading, $ionicModal){
 
   $ionicLoading.show({
     template: 'Loading...'
   });
 
   Users.getList().then(function(users){
+    console.log(users);
     $scope.users = users;
     $ionicLoading.hide();
 
@@ -18,10 +19,11 @@ angular.module('serviceApp')
     Users.addUser();
   }
 
-  $scope.refresh = function(){
+  $scope.getNewList = function(){
     $ionicLoading.show();
 
     Users.getList().then(function(users){
+      console.log(users);
       $scope.users = users;
       $ionicLoading.hide();
 
@@ -64,7 +66,6 @@ angular.module('serviceApp')
   $scope.openModal = function() {
     $scope.modal.show()
     Users.getOneRandomUser().then(function(users){
-
       $scope.user = users[0];
     }, function(msg){
       alert(msg);

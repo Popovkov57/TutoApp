@@ -3,11 +3,14 @@ angular.module('serviceApp')
 .factory('Users',function($http, $q, $stateParams) {
 
   var users = [];
+  var tempUsers = [];
   var user;
 
   var performHttpRequestForUsers = function(count) {
     var deffered = $q.defer();
-    users =[];
+
+    resetUsersList();
+
     url = "http://api.randomuser.me/?results=";
     url += count;
 
@@ -15,7 +18,7 @@ angular.module('serviceApp')
     .success(function(data, status){
       for(var i=0; i<data.results.length; i++){
         var tempUser = data.results[i].user;
-        users[i]={
+        tempUsers[i]={
           "firstname": tempUser.name.first,
           "lastname": tempUser.name.last,
           "avatarURL": tempUser.picture.thumbnail,
@@ -24,7 +27,7 @@ angular.module('serviceApp')
           "id": data.results[i].seed
         };
       };
-      deffered.resolve(users);
+      deffered.resolve(tempUsers);
     })
     .error(function(data, status){
       deffered.reject("Impossible de récupérer les données");
@@ -34,7 +37,8 @@ angular.module('serviceApp')
 
   var getList = function(){
     var deffered = $q.defer();
-    performHttpRequestForUsers(5).then(function(users){
+    performHttpRequestForUsers(4).then(function(tempUsers){
+      users = tempUsers;
       deffered.resolve(users);
     }, function(msg){
       deffered.reject(msg);
@@ -45,8 +49,8 @@ angular.module('serviceApp')
   var getOneRandomUser = function(){
 
     var deffered = $q.defer();
-    performHttpRequestForUsers(1).then(function(users){
-      deffered.resolve(users);
+    performHttpRequestForUsers(1).then(function(tempUsers){
+      deffered.resolve(tempUsers);
     }, function(msg){
       deffered.reject(msg);
     });
@@ -55,6 +59,10 @@ angular.module('serviceApp')
 
   var addUser = function(user){
     users.unshift(user);
+  }
+
+  var resetUsersList = function(){
+    tempUsers = [];
   }
 
   var getUserById = function(id){
