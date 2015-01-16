@@ -37,7 +37,7 @@ angular.module('serviceApp')
 
   var getList = function(){
     var deffered = $q.defer();
-    performHttpRequestForUsers(4).then(function(tempUsers){
+    performHttpRequestForUsers(5).then(function(tempUsers){
       users = tempUsers;
       deffered.resolve(users);
     }, function(msg){
