@@ -55,8 +55,9 @@ angular.module('serviceApp')
 
   $scope.openModal = function() {
     $scope.modal.show()
-    Users.getOneRandomUser().then(function(user){
-      $scope.user = user;
+    Users.getOneRandomUser().then(function(users){
+      console.log(users.firstname);
+      $scope.user = users;
     }, function(msg){
       alert(msg);
     });
