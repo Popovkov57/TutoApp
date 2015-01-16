@@ -5,7 +5,7 @@
 
     <ion-nav-buttons side="right">
 
-      <button class="button button-clear ion-person-stalker" ng-click="openModal()">+</button>
+      <button class="button button-clear ion-person-stalker" ng-click="openModalAddUser()">+</button>
 
     </ion-nav-buttons>
 
@@ -25,7 +25,7 @@
         on-hold="longPressItem(showButton.showReorder)" >
 
           <img ng-src="{{user.avatarURL}}">
-          <h2>{{user.firstname}} {{user.lastname}}</h2>
+          <h2>{{user | fullName}}</h2>
 
           <ion-option-button class="button-assertive ion-close-circled" ng-click="deleteUser(user.id)">
           </ion-option-button>

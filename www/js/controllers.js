@@ -7,7 +7,6 @@ angular.module('serviceApp')
   });
 
   Users.getList().then(function(users){
-    console.log(users);
     $scope.users = users;
     $ionicLoading.hide();
 
@@ -23,7 +22,6 @@ angular.module('serviceApp')
     $ionicLoading.show();
 
     Users.getList().then(function(users){
-      console.log(users);
       $scope.users = users;
       $ionicLoading.hide();
 
@@ -50,6 +48,7 @@ angular.module('serviceApp')
     };
   }
 
+
   $scope.moveItem = function(user, fromIndex, toIndex) {
     $scope.users.splice(fromIndex, 1);
     $scope.users.splice(toIndex, 0, user);
@@ -63,7 +62,7 @@ angular.module('serviceApp')
     $scope.modal = modal
   })
 
-  $scope.openModal = function() {
+  $scope.openModalAddUser = function() {
     $scope.modal.show()
     Users.getOneRandomUser().then(function(users){
       $scope.user = users[0];
@@ -85,4 +84,12 @@ angular.module('serviceApp')
 
 .controller('userCtrl', function($scope, Users, $stateParams){
   $scope.user = Users.getUserById($stateParams.id);
+})
+
+.filter('fullName', function(){
+  return function(user){
+    input = user;
+    var out = user.firstname + " " + user.lastname;
+    return out;
+  }
 })
