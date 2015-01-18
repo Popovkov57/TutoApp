@@ -16,7 +16,7 @@
       <div class="card" collection-repeat="user in users" collection-item-width="'100%'"
       collection-item-height="'18%'" ng-style="{left: 0, right: 0}">
 
-        <ion-item  class="item item-avatar item-remove-animate" href="#/user/{{user.id}}"
+        <ion-item  class="item item-avatar" href="#/user/{{user.id}}"
         on-hold="longPressItem(showButton.showReorder)" >
 
           <img ng-src="{{user.avatarURL}}">

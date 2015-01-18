@@ -14,10 +14,6 @@ angular.module('serviceApp')
     alert(msg);
   });
 
-  $scope.add = function(){
-    Users.addUser();
-  }
-
   $scope.getNewList = function(){
     $ionicLoading.show();
 
@@ -41,10 +37,9 @@ angular.module('serviceApp')
     showReorder: false
   };
 
-  $scope.longPressItem = function(b){
+  $scope.longPressItem = function(showReorderState){
     $scope.showButton = {
-      showDelete: false,
-      showReorder: !b
+      showReorder: !showReorderState
     };
   }
 
