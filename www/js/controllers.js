@@ -32,7 +32,7 @@ angular.module('serviceApp')
     $scope.$broadcast('scroll.refreshComplete');
   }
 
-  $scope.deleteUser = function(id){
+  $scope.deleteById = function(id){
     Users.deleteUserById(id);
   }
 

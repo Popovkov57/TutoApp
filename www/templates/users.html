@@ -1,4 +1,4 @@
-<ion-view view-title="Users App">
+<ion-view view-title="Gypsy'r">
 
   <ion-nav-bar class="bar-positive" >
     <ion-nav-buttons side="right">
@@ -22,7 +22,7 @@
           <img ng-src="{{user.avatarURL}}">
           <h2>{{user | fullName}}</h2>
 
-          <ion-option-button class="button-assertive ion-close-circled" ng-click="deleteUser(user.id)">
+          <ion-option-button class="button-assertive ion-close-circled" ng-click="deleteById(user.id)">
           </ion-option-button>
 
           <ion-reorder-button class="ion-navicon" on-reorder="moveItem(user, $fromIndex, $toIndex)"></ion-reorder-button>

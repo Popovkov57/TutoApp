@@ -6,10 +6,10 @@ angular.module('serviceApp')
   var tempUsers = [];
   var user;
 
-  var performHttpRequestForUsers = function(count) {
+  var _performHttpRequestForUsers = function(count) {
     var deffered = $q.defer();
 
-    resetUsersList();
+    _resetUsersList();
 
     url = "http://api.randomuser.me/?results=";
     url += count;
@@ -37,7 +37,7 @@ angular.module('serviceApp')
 
   var getList = function(){
     var deffered = $q.defer();
-    performHttpRequestForUsers(5).then(function(tempUsers){
+    _performHttpRequestForUsers(5).then(function(tempUsers){
       users = tempUsers;
       deffered.resolve(users);
     }, function(msg){
@@ -49,7 +49,7 @@ angular.module('serviceApp')
   var getOneRandomUser = function(){
 
     var deffered = $q.defer();
-    performHttpRequestForUsers(1).then(function(tempUsers){
+    _performHttpRequestForUsers(1).then(function(tempUsers){
       deffered.resolve(tempUsers);
     }, function(msg){
       deffered.reject(msg);
@@ -61,7 +61,7 @@ angular.module('serviceApp')
     users.unshift(user);
   }
 
-  var resetUsersList = function(){
+  var _resetUsersList = function(){
     tempUsers = [];
   }
 
