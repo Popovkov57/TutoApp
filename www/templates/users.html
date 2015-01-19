@@ -14,9 +14,9 @@
     <ion-list show-delete="showButton.showDelete" show-reorder="showButton.showReorder">
 
       <div class="card" collection-repeat="user in users" collection-item-width="'100%'"
-      collection-item-height="'18%'" ng-style="{left: 0, right: 0}">
+      collection-item-height="'16%'" ng-style="{left: 0, right: 0}">
 
-        <ion-item  class="item item-avatar" href="#/user/{{user.id}}"
+        <ion-item  class="item item-avatar item-icon-right"  href="#/user/{{user.id}}"
         on-hold="longPressItem(showButton.showReorder)" >
 
           <img ng-src="{{user.avatarURL}}">
@@ -26,6 +26,8 @@
           </ion-option-button>
 
           <ion-reorder-button class="ion-navicon" on-reorder="moveItem(user, $fromIndex, $toIndex)"></ion-reorder-button>
+
+          <i class="icon ion-chevron-right"></i>
 
         </ion-item>
 

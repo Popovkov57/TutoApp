@@ -12,7 +12,8 @@ angular.module('serviceApp', ['ionic'])
   });
 })
 
-.config(function($stateProvider) {
+.config(function($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise('users')
   $stateProvider
   .state('users', {
     url: '/users',

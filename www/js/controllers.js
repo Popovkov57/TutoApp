@@ -74,9 +74,13 @@ angular.module('serviceApp')
     });
   };
 
-  $scope.closeModal = function(user) {
-    $scope.modal.hide();
+  $scope.modalAddUser = function(user) {
     Users.addUser(user);
+  }
+
+  $scope.closeModal = function() {
+    $scope.modal.hide();
+    //Users.addUser(user);
   };
 
   $scope.$on('$destroy', function() {
