@@ -12,12 +12,10 @@
     <ion-refresher pulling-text="Pull to refresh" on-refresh="getNewList()">
     </ion-refresher>
 
-    <ion-list show-reorder="showReorderButton">
+    <ion-list  show-reorder="showReorderButton">
 
-      <div class="card my-card" collection-repeat="user in users track by $index" collection-item-width="'100%'" 
-      collection-item-height="'16%'" on-hold="longPressCard(showReorderButton)">
-
-        <ion-item class="item item-avatar"  href="#/user/{{user.id}}" >
+        <ion-item class="item item-avatar"  href="#/user/{{user.id}}" ng-repeat="user in users"
+        on-hold="longPressCard(showReorderButton)" >
 
             <!-- utiliser un ui-sref /users/:id
               réintroduire un ng reapeat
@@ -33,8 +31,6 @@
 
 
         </ion-item>
-
-      </div>
 
     </ion-list>
 

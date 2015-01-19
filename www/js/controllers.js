@@ -41,11 +41,7 @@ angular.module('serviceApp')
     $scope.showReorderButton = !showReorderState;
   }
 
-  $scope.moveCard = function(Users, user, fromIndex, toIndex) {
-    console.log("fromIndex : " +fromIndex);
-    console.log("toIndex : " +toIndex);
-    console.log(user);
-
+  $scope.moveCard = function(user, fromIndex, toIndex) {
     $scope.users.splice(fromIndex, 1);
     $scope.users.splice(toIndex, 0, user);
   };
