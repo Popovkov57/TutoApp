@@ -3,7 +3,7 @@ angular.module('serviceApp')
 .controller('usersCtrl', function($scope, Users, $ionicLoading){
 
   $ionicLoading.show({
-    template: 'Loading...'
+    template: '<i class="ion-load-a">Loading...</i>'
   });
 
   Users.getList().then(function(users){
@@ -15,7 +15,9 @@ angular.module('serviceApp')
   });
 
   $scope.getNewList = function(){
-    $ionicLoading.show();
+    $ionicLoading.show({
+      template: '<i class="ion-load-a">Loading... </i>'
+    });
 
     Users.getList().then(function(users){
       $scope.users = users;
@@ -80,7 +82,6 @@ angular.module('serviceApp')
 
   $scope.closeModal = function() {
     $scope.modal.hide();
-    //Users.addUser(user);
   };
 
   $scope.$on('$destroy', function() {
