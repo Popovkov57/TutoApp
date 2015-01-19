@@ -1,4 +1,9 @@
-.my-card {
-  left:0;
-  right:0
+.my-item {
+  border-top-width: 1px;
+  border-bottom-width: 2px;
+  border-left-width: 1px;
+  border-right-width: 2px;
+  border-radius: 5px;
+  margin: 5px;
+  border-color: rgb(176, 186, 224);
 }
