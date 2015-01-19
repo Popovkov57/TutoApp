@@ -1,0 +1,38 @@
+<ion-view view-title="Gypsy'r">
+
+  <ion-nav-bar class="bar-positive" >
+    <ion-nav-buttons side="right">
+      <button class="button button-clear ion-person-stalker" ng-controller="modalAddUserCtrl" ng-click="openModalAddUser()">+</button>
+    </ion-nav-buttons>
+  </ion-nav-bar>
+
+  <ion-content>
+
+    <ion-refresher pulling-text="Pull to refresh" on-refresh="getNewList()">
+    </ion-refresher>
+
+    <ion-list show-delete="showButton.showDelete" show-reorder="showButton.showReorder">
+
+      <div class="card" collection-repeat="user in users" collection-item-width="'100%'"
+      collection-item-height="'18%'" ng-style="{left: 0, right: 0}">
+
+        <ion-item  class="item item-avatar" href="#/user/{{user.id}}"
+        on-hold="longPressItem(showButton.showReorder)" >
+
+          <img ng-src="{{user.avatarURL}}">
+          <h2>{{user | fullName}}</h2>
+
+          <ion-option-button class="button-assertive ion-close-circled" ng-click="deleteById(user.id)">
+          </ion-option-button>
+
+          <ion-reorder-button class="ion-navicon" on-reorder="moveItem(user, $fromIndex, $toIndex)"></ion-reorder-button>
+
+        </ion-item>
+
+      </div>
+
+    </ion-list>
+
+  </ion-content>
+
+</ion-view>

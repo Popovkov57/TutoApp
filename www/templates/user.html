@@ -1,22 +1,29 @@
 <ion-view view-title="{{user.firstname}}">
+
+  <ion-nav-bar class="bar-positive">
+
+    <ion-nav-back-button>
+    </ion-nav-back-button>
+
+  </ion-nav-bar>
+
   <ion-content>
 
     <div class="list card">
 
       <div class="item item-avatar">
 
-        <img ng-src="{{user.avatarURL}}"><h2>{{user.firstname}} {{user.lastname}}</h2>
+        <img ng-src="{{user.avatarURL}}"><h2>{{user | fullName }}</h2><br/>
 
-      </div>
-
-      <a class="item item-icon-left assertive" href="#">
         <p><strong>Adresse</strong><br/>
           {{user.city}}<br />
           {{user.street}}
         </p>
-      </a>
+
+      </div>
 
     </div>
 
   </ion-content>
+
 </ion-view>
