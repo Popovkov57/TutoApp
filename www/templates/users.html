@@ -2,7 +2,8 @@
 
   <ion-nav-bar class="bar-positive" >
     <ion-nav-buttons side="right">
-      <button class="button button-clear ion-person-stalker" ng-controller="modalAddUserCtrl" ng-click="openModalAddUser()">+</button>
+      <!-- Drop ng-controller -->
+      <button class="button button-clear ion-person-stalker" ng-click="openModalAddUser()">+</button>
     </ion-nav-buttons>
   </ion-nav-bar>
 
@@ -11,23 +12,25 @@
     <ion-refresher pulling-text="Pull to refresh" on-refresh="getNewList()">
     </ion-refresher>
 
-    <ion-list show-delete="showButton.showDelete" show-reorder="showButton.showReorder">
+    <ion-list show-reorder="showReorderButton">
 
-      <div class="card" collection-repeat="user in users" collection-item-width="'100%'"
-      collection-item-height="'16%'" ng-style="{left: 0, right: 0}">
+      <div class="card my-card" collection-repeat="user in users track by $index" collection-item-width="'100%'" 
+      collection-item-height="'16%'" on-hold="longPressCard(showReorderButton)">
 
-        <ion-item  class="item item-avatar item-icon-right"  href="#/user/{{user.id}}"
-        on-hold="longPressItem(showButton.showReorder)" >
+        <ion-item class="item item-avatar"  href="#/user/{{user.id}}" >
 
-          <img ng-src="{{user.avatarURL}}">
-          <h2>{{user | fullName}}</h2>
+            <!-- utiliser un ui-sref /users/:id
+              réintroduire un ng reapeat
+            -->
 
-          <ion-option-button class="button-assertive ion-close-circled" ng-click="deleteById(user.id)">
-          </ion-option-button>
+            <img ng-src="{{user.avatarURL}}">
+            <h2>{{user | fullName}}</h2>
 
-          <ion-reorder-button class="ion-navicon" on-reorder="moveItem(user, $fromIndex, $toIndex)"></ion-reorder-button>
+            <ion-option-button class="button-assertive ion-close-circled" ng-click="deleteById(user.id)">
+            </ion-option-button>
 
-          <i class="icon ion-chevron-right"></i>
+            <ion-reorder-button class="ion-navicon" on-reorder="moveCard(user, $fromIndex, $toIndex)"></ion-reorder-button>
+
 
         </ion-item>
 

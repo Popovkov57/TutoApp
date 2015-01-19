@@ -78,7 +78,7 @@ angular.module('serviceApp')
     for(i=0; i<users.length; i++){
       if(users[i].id == id){
         users.splice(i,1);
-        break;
+        return;
       }
     }
   }

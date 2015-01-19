@@ -1,9 +1,10 @@
 angular.module('serviceApp')
 
-.controller('usersCtrl', function($scope, Users, $ionicLoading){
+// majuscule constante Ctrl
+.controller('usersCtrl', function($scope, Users, $ionicLoading, $ionicModal){
 
   $ionicLoading.show({
-    template: '<i class="ion-load-a">Loading...</i>'
+    template: '<i class="ion-load-a"></i>Loading...'
   });
 
   Users.getList().then(function(users){
@@ -16,7 +17,7 @@ angular.module('serviceApp')
 
   $scope.getNewList = function(){
     $ionicLoading.show({
-      template: '<i class="ion-load-a">Loading... </i>'
+      template: '<i class="ion-load-a"></i>Loading...'
     });
 
     Users.getList().then(function(users){
@@ -34,31 +35,20 @@ angular.module('serviceApp')
     Users.deleteUserById(id);
   }
 
-  $scope.showButton = {
-    showDelete: false,
-    showReorder: false
-  };
+  $scope.showReorderButton = false;
 
-  $scope.longPressItem = function(showReorderState){
-    $scope.showButton = {
-      showReorder: !showReorderState
-    };
+  $scope.longPressCard = function(showReorderState){
+    $scope.showReorderButton = !showReorderState;
   }
 
-  $scope.moveItem = function(user, fromIndex, toIndex) {
+  $scope.moveCard = function(Users, user, fromIndex, toIndex) {
+    console.log("fromIndex : " +fromIndex);
+    console.log("toIndex : " +toIndex);
+    console.log(user);
+
     $scope.users.splice(fromIndex, 1);
     $scope.users.splice(toIndex, 0, user);
   };
-
-})
-
-.controller('userCtrl', function($scope, Users, $stateParams){
-  $scope.user = Users.getUserById($stateParams.id);
-})
-
-
-
-.controller('modalAddUserCtrl', function($scope, $ionicModal, Users){
 
   $ionicModal.fromTemplateUrl('modal-user.html', {
     scope: $scope,
@@ -76,6 +66,20 @@ angular.module('serviceApp')
     });
   };
 
+  $scope.$on('$destroy', function() {
+    $scope.modal.remove();
+  });
+
+})
+
+.controller('userCtrl', function($scope, Users, $stateParams){
+  $scope.user = Users.getUserById($stateParams.id);
+})
+
+
+
+.controller('ModalAddUserCtrl', function($scope, $ionicModal, Users){
+
   $scope.modalAddUser = function(user) {
     Users.addUser(user);
   }
@@ -83,9 +87,5 @@ angular.module('serviceApp')
   $scope.closeModal = function() {
     $scope.modal.hide();
   };
-
-  $scope.$on('$destroy', function() {
-    $scope.modal.remove();
-  });
 
 })
