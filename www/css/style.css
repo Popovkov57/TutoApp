@@ -1,9 +1,12 @@
 .my-item {
-  border-top-width: 1px;
-  border-bottom-width: 2px;
-  border-left-width: 1px;
-  border-right-width: 2px;
-  border-radius: 5px;
+  border-radius: 3px;
   margin: 5px;
-  border-color: rgb(176, 186, 224);
+}
+
+.my-button:before {
+  color: rgb(176, 186, 224);
+}
+
+.effect1{
+  box-shadow: 0 5px 6px -6px #777;
 }

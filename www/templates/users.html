@@ -14,7 +14,7 @@
 
     <ion-list  show-reorder="showReorderButton">
 
-        <ion-item class="item item-avatar my-item"  href="#/user/{{user.id}}" ng-repeat="user in users"
+        <ion-item class="item item-avatar my-item effect1"  href="#/user/{{user.id}}" ng-repeat="user in users"
         on-hold="longPressCard(showReorderButton)" >
 
             <!-- utiliser un ui-sref /users/:id
@@ -27,7 +27,7 @@
             <ion-option-button class="button-assertive ion-close-circled" ng-click="deleteById(user.id)">
             </ion-option-button>
 
-            <ion-reorder-button class="ion-navicon" on-reorder="moveCard(user, $fromIndex, $toIndex)"></ion-reorder-button>
+            <ion-reorder-button class="ion-navicon my-button" on-reorder="moveCard(user, $fromIndex, $toIndex)"></ion-reorder-button>
 
 
         </ion-item>
