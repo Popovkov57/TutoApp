@@ -20,6 +20,7 @@ describe('Users', function(){
       expect(users).toEqual([]);
     });
 
+    // execut all now 
     httpMock.flush();
   });
 });

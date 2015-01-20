@@ -16,6 +16,7 @@ describe('fullName Filter test', function() {
   it('display fullname if firstName and lastName are not empty', inject(function($filter){
     expect(fullName(user)).toEqual("Max Lafarce");
   }));
+  
 
   it('display firstname if lastname is empty', inject(function($filter){
     user.lastname = "";
