@@ -2,57 +2,42 @@ describe('fullName Filter test', function() {
   // Load the module seviceApp
   beforeEach(module('serviceApp'));
 
-  it('display fullname if firstName and lastName are not null', inject(function($filter){
-    var user={
+  var fullName, user;
+
+  beforeEach(inject(function($filter){
+    fullName = $filter('fullName');
+    user = {
       "firstname": "Max",
       "lastname": "Lafarce",
       "email":"max@gmail.com"
     };
-    var fullName = $filter('fullName');
-    expect(fullName(user)).toEqual(user.firstname + ' ' + user.lastname);
   }));
 
-
-  it('display email if firstname and lastname are null', inject(function($filter){
-    var user={
-      "firstname": "",
-      "lastname": "",
-      "email":"max@gmail.com"
-    };
-    var fullName = $filter('fullName');
-    expect(fullName(user)).toEqual(user.email);
+  it('display fullname if firstName and lastName are not empty', inject(function($filter){
+    expect(fullName(user)).toEqual("Max Lafarce");
   }));
 
+  it('display firstname if lastname is empty', inject(function($filter){
+    user.lastname = "";
+    expect(fullName(user)).toEqual("Max");
+  }));
 
-  it('display anonymous if firstname, lastname and email are null', inject(function($filter){
-    var user={
-      "firstname":"",
-      "lastname":"",
-      "email": ""
-    };
-    var fullName = $filter('fullName');
+  it('display email if firstname and lastname are empty', inject(function($filter){
+    user.firstname = "";
+    user.lastname = "";
+    expect(fullName(user)).toEqual("max@gmail.com");
+  }));
+
+  it('display lastname if firstname is empty', inject(function($filter){
+    user.firstname = "";
+    expect(fullName(user)).toEqual("Lafarce");
+  }));
+
+  it('display anonymous if firstname, lastname and email are empty', inject(function($filter){
+    user.email = "";
+    user.firstname = "";
+    user.lastname = "";
     expect(fullName(user)).toEqual("anonymous");
-  }));
-
-
-  it('display firstname if lastname is null', inject(function($filter){
-    var user={
-      "firstname": "Max",
-      "lastname": "",
-      "email":"max@gmail.com"
-    };
-    var fullName = $filter('fullName');
-    expect(fullName(user)).toEqual(user.firstname);
-  }));
-
-  it('display lastname if first is null', inject(function($filter){
-    var user={
-      "firstname": "",
-      "lastname": "Lafarce",
-      "email":"max@gmail.com"
-    };
-    var fullName = $filter('fullName');
-    expect(fullName(user)).toEqual(user.lastname);
   }));
 
 })
