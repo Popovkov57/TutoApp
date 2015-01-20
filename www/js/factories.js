@@ -1,4 +1,4 @@
-angular.module('serviceApp')
+angular.module('serviceApp.factories', [])
 
 .factory('Users',function($http, $q) {
 

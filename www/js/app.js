@@ -1,5 +1,5 @@
 
-angular.module('serviceApp', ['ionic'])
+angular.module('serviceApp', ['ionic', 'serviceApp.factories'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
