@@ -2,6 +2,24 @@ angular.module('serviceApp')
 
 .filter('fullName', function(){
   return function(user){
-    return (user.firstname + ' ' + user.lastname);
+
+    var fullname = user.firstname + ' ' + user.lastname;
+
+    if(fullname == ' '){
+
+      if(user.email != ''){
+
+        return user.email;
+
+      }
+
+      return "anonymous";
+
+    }else{
+
+      return (fullname.replace(/\s$/, "").replace(/^\s/, ""));
+
+    }
+
   }
 })

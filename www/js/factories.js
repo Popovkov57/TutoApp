@@ -21,6 +21,7 @@ angular.module('serviceApp')
         tempUsers[i]={
           "firstname": tempUser.name.first,
           "lastname": tempUser.name.last,
+          "email": tempUser.email,
           "avatarURL": tempUser.picture.thumbnail,
           "city": tempUser.location.city,
           "street": tempUser.location.street,
