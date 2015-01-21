@@ -66,8 +66,18 @@ describe('Users', function(){
     });
     // flush response
     httpMock.flush();
-  })
+  });
 
+  it("expects getList() return [] of user if API response is empty ", function () {
 
+    httpMock.expectGET(url).respond({
+      results : []
+    });
+    factory.getList().then(function(users){
+      expect(users).toEqual([]);
+    });
+    // flush response
+    httpMock.flush();
+  });
 
 });
