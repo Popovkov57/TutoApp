@@ -1,0 +1,35 @@
+I/ test filter fullName:
+
+  1) display fullname if firstName and lastName are not empty
+  2) display firstname if lastname is empty
+  3) display email if firstname and lastname are empty
+  4) display lastname if firstname is empty
+  5) display anonymous if firstname, lastname and email are empty
+
+II/ test factory Users:
+
+  1) getList()
+
+    a. return 5 users if API responce is ok
+    b. return null if API responce is nok
+
+  2) addUser(user)
+
+    a. verify new array length is greater than old array
+    b.
+
+  3) getUserById(id)
+
+    a. display user if his id is not empty
+    b. return null if id is empty
+
+  4) deleteUserById(id)
+
+    a. verify new array length is lesser than old array
+    b. verify that delete user does not exist in the new array
+    c. does nothing if id is empty
+
+  5) getOneRandomUser()
+
+    a. display user if API responce is ok
+    b. return null if API responce is nok
