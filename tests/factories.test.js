@@ -47,6 +47,7 @@ describe('Users', function(){
     id: 'graywolf' };
 
   var url="http://api.randomuser.me/?results=5";
+  var url1="http://api.randomuser.me/?results=1";
 
   beforeEach(module('serviceApp.factories'));
 
@@ -69,7 +70,7 @@ describe('Users', function(){
   });
 
 
-  it("return null if API responce is nok", function () {
+  it("return [] if API responce is nok", function () {
 
     httpMock.expectGET(url).respond({
       results : []
@@ -120,7 +121,7 @@ describe('Users', function(){
     httpMock.flush();
   });
 
-  // --------------------- Methode deleteUserById() --------------------- //
+  // --------------------- Methode deleteUserById(id) --------------------- //
 
   it("verify new array length is lesser than old array", function () {
     httpMock.expectGET(url).respond({
@@ -147,6 +148,29 @@ describe('Users', function(){
     httpMock.flush();
   });
 
+  // --------------------- Methode getOneRandomUser() --------------------- //
+
+  it("display user if API responce is ok", function () {
+    httpMock.expectGET(url1).respond({
+      results : dataIn
+    });
+    factory.getOneRandomUser().then(function(users){
+      expect(users.length).toEqual(1);
+    });
+    // flush response
+    httpMock.flush();
+  });
+
+  it("return [] if API responce is nok", function () {
+    httpMock.expectGET(url1).respond({
+      results : []
+    });
+    factory.getOneRandomUser().then(function(users){
+      expect(users).toEqual([]);
+    });
+    // flush response
+    httpMock.flush();
+  });
 
 
 

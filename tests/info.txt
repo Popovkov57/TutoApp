@@ -16,7 +16,7 @@ II/ test factory Users:
   2) addUser(user)
 
     a. verify new array length is greater than old array
-    
+
 
   3) getUserById(id)
 
@@ -26,7 +26,6 @@ II/ test factory Users:
   4) deleteUserById(id)
 
     a. verify new array length is lesser than old array
-    b. verify that delete user does not exist in the new array
     c. does nothing if id is empty
 
   5) getOneRandomUser()
