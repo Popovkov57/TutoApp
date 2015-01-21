@@ -37,14 +37,14 @@ describe('Users', function(){
     seed: "graywolf"
   }];
 
-  var dataOut = [{
+  var dataOut = {
     firstname: 'lois',
     lastname: 'williams',
     email: 'lois.williams50@example.com',
     avatarURL: 'http://api.randomuser.me/portraits/thumb/women/55.jpg',
     city: 'frederick',
     street: '1969 elgin st',
-    id: 'graywolf' }];
+    id: 'graywolf' };
 
   var url="http://api.randomuser.me/?results=5";
 
@@ -55,20 +55,21 @@ describe('Users', function(){
     factory = Users;
   }));
 
+  // --------------------- Methode getList() --------------------- //
 
-  it("expects getList() return a list of user if API response is not empty ", function () {
-
+  it("return 5 users if API responce is ok", function () {
     httpMock.expectGET(url).respond({
       results : dataIn
     });
     factory.getList().then(function(users){
-      expect(users).toEqual(dataOut);
+      expect(users).toEqual([dataOut]);
     });
     // flush response
     httpMock.flush();
   });
 
-  it("expects getList() return [] of user if API response is empty ", function () {
+
+  it("return null if API responce is nok", function () {
 
     httpMock.expectGET(url).respond({
       results : []
@@ -79,5 +80,75 @@ describe('Users', function(){
     // flush response
     httpMock.flush();
   });
+
+
+  // --------------------- Methode addList(user) --------------------- //
+
+  it("verify new array length is greater than old array", function () {
+    httpMock.expectGET(url).respond({
+      results : dataIn
+    });
+    factory.getList().then(function(users){
+      factory.addUser(dataOut)
+      expect(users.length).toEqual(2);
+    });
+    // flush response
+    httpMock.flush();
+  });
+
+  // --------------------- Methode getUserById() --------------------- //
+
+  it("display user if his id is not empty", function () {
+    httpMock.expectGET(url).respond({
+      results : dataIn
+    });
+    factory.getList().then(function(users){
+      expect(factory.getUserById("graywolf")).toEqual(dataOut);
+    });
+    // flush response
+    httpMock.flush();
+  });
+
+  it("return null if id is empty", function () {
+    httpMock.expectGET(url).respond({
+      results : dataIn
+    });
+    factory.getList().then(function(users){
+      expect(factory.getUserById(null)).toEqual(null);
+    });
+    // flush response
+    httpMock.flush();
+  });
+
+  // --------------------- Methode deleteUserById() --------------------- //
+
+  it("verify new array length is lesser than old array", function () {
+    httpMock.expectGET(url).respond({
+      results : dataIn
+    });
+    factory.getList().then(function(users){
+      factory.deleteUserById("graywolf")
+      expect(users).toEqual([]);
+    });
+    // flush response
+    httpMock.flush();
+  });
+
+
+  it("does nothing if id is empty", function () {
+    httpMock.expectGET(url).respond({
+      results : dataIn
+    });
+    factory.getList().then(function(users){
+      factory.deleteUserById()
+      expect(users).toEqual(users);
+    });
+    // flush response
+    httpMock.flush();
+  });
+
+
+
+
 
 });

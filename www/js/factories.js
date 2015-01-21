@@ -71,6 +71,8 @@ angular.module('serviceApp.factories', [])
       if(users[i].id == id){
         user = users[i];
         return user;
+      }else{
+        return null;
       }
     }
   }

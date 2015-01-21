@@ -16,7 +16,7 @@ II/ test factory Users:
   2) addUser(user)
 
     a. verify new array length is greater than old array
-    b.
+    
 
   3) getUserById(id)
 
