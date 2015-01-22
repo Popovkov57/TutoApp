@@ -19,6 +19,7 @@ module.exports = function(config) {
       'www/templates/*.html',
       'node_modules/angular-mocks/angular-mocks.js',
       'tests/*.js',
+      'tests/e2e/*.js'
       'www/js/*.js'
     ],
 
