@@ -2,7 +2,7 @@
 
   <ion-nav-bar class="bar-positive">
 
-    <ion-nav-back-button>
+    <ion-nav-back-button id="back-button">
     </ion-nav-back-button>
 
   </ion-nav-bar>
@@ -13,7 +13,7 @@
 
       <div class="item item-avatar">
 
-        <img ng-src="{{user.avatarURL}}"><h2>{{user | fullName }}</h2><br/>
+        <img ng-src="{{user.avatarURL}}"><h2 id="fullname">{{user | fullName }}</h2><br/>
 
         <p><strong>Adresse</strong><br/>
           {{user.city}}<br />

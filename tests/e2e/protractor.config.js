@@ -10,7 +10,7 @@ exports.config = {
   ],
   jasmineNodeOpts: {
     showColors: true,
-    defaultTimeoutInterval: 40000,
+    defaultTimeoutInterval: 50000,
     isVerbose: true,
   },
   allScriptsTimeout: 50000,
@@ -18,10 +18,3 @@ exports.config = {
     browser.driver.get('http://localhost:3000');
   }
 };
-
-
-// conf.js
-// exports.config = {
-//   seleniumAddress: 'http://localhost:4444/wd/hub',
-//   specs: ['spec.js']
-// }
