@@ -3,7 +3,7 @@
 /* Tests */
 
 describe('Show users in list view', function(){
-	var userList, buttonShowUser, buttonAddUser, backButton;
+	var userList, buttonShowUser, buttonAddUser, backButton, buttonAddUser;
 
 	beforeEach(function() {
 		browser.get('http://localhost:8100/#/users');
@@ -28,52 +28,37 @@ describe('Show users in list view', function(){
 		});
 
 		describe('when i click on the back button', function(){
-			beforeEach(function(){
-				backButton = element(by.id('back-button'));
-				backButton.click();
-			})
-
 			it('shows the next view', function(){
-
-				element(by.id('fullname')).getText().then(function(txt){
-					expect(txt).not.toEqual('');
-				})
+				// On récupère la liste de tous les back buttons et on trie pour
+				// récupérer seulement le bouton visible, afin de cliquer dessus
+				// et revenir à la page de la liste des utilisateurs
+				element.all(by.className('back-button')).filter(function(elem, index) {
+					return elem.getAttribute('class').then(function(className) {
+						return !(/hide/.test(className));
+					});
+				}).then(function(filteredElements) {
+					filteredElements[0].click().then(function() {
+						userList = element.all(by.repeater('user in users'));
+						expect(userList.count()).toEqual(5);
+					})
+				});
 			});
-
-		})
-
+		});
 	});
 
+	it('load a random user and open modal', function(){
 
-	// it('show user list if click back button', function(){
-	//
-	// 	element(by.id('back-button')).click().then(function(){
-	// 		expect(1).toEqual(1);
-	// 	})
-	//
-	// });
-
-	// describe('when i click on one user', function() {
-	// 	beforeEach(function() {
-	// 		// click sur le user
-	//
-	// 	});
-	//
-	// 	it('show a back button',function() {
-	//
-	// 	});
-	//
-	// 	describe('when i click on the back button', function() {
-	// 		beforeEach(function() {
-	// 			// click sur le back button
-	// 		});
-	//
-	// 		it('returns to the users lists', function() {
-	//
-	// 		});
-	// 	});
-	// });
-
-
+		element.all(by.id('userButtonAdd')).filter(function(elem, index) {
+			return elem.getText().then(function(txt) {
+				return txt === '+';
+			});
+		}).then(function(filteredElements) {
+			filteredElements[0].click().then(function() {
+				element(by.className('modal-title')).getText().then(function(txt){
+					expect(txt).toEqual('Add Gypsy');
+				});
+			});
+		});
+	});
 
 });
