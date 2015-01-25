@@ -29,4 +29,6 @@ II/ test unitaire factory Users:
 
 III/ test users view
 
-  1) 
+  1) display the user list
+  2) display user view when i click on an user item
+  3) add an user to the list when i click on add button user

@@ -4,6 +4,7 @@ describe('fullName Filter test', function() {
 
   var fullName, user;
 
+  // before each test we load the fullname filter and create an user
   beforeEach(inject(function($filter){
     fullName = $filter('fullName');
     user = {
@@ -16,7 +17,6 @@ describe('fullName Filter test', function() {
   it('display fullname if firstName and lastName are not empty', inject(function($filter){
     expect(fullName(user)).toEqual("Max Lafarce");
   }));
-
 
   it('display firstname if lastname is empty', inject(function($filter){
     user.lastname = "";

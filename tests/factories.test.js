@@ -1,6 +1,7 @@
 describe('Users', function(){
   var httpMock, http, users, timeout;
 
+  // simulate data from the random user API
   var dataIn = [{
     user: {
       gender: "female",
@@ -37,6 +38,7 @@ describe('Users', function(){
     seed: "graywolf"
   }];
 
+  // simulate the data of a user
   var dataOut = {
     firstname: 'lois',
     lastname: 'williams',
@@ -46,9 +48,12 @@ describe('Users', function(){
     street: '1969 elgin st',
     id: 'graywolf' };
 
+  // url of the random user API 
   var url="http://api.randomuser.me/?results=5";
   var url1="http://api.randomuser.me/?results=1";
 
+
+  // before each test we load the factory and the httpBackend service
   beforeEach(module('serviceApp.factories'));
 
   beforeEach(inject(function ($httpBackend, Users) {
