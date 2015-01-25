@@ -6,7 +6,7 @@ exports.config = {
   },
   specs: [
   // We are going to make this file in a minute
-  'becomeAwesome.spec.js'
+  'test.spec.js'
   ],
   jasmineNodeOpts: {
     showColors: true,
