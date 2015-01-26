@@ -6,7 +6,7 @@
 
 >blocnote
 
-*text italic *
+*text italic*
 
 **text bold**
 
