@@ -19,7 +19,7 @@ angular.module('serviceApp.factories', [])
     $http.get(url)
     .success(function(data, status){
       for(var i=0; i<data.results.length; i++){
-        //To get user with his info and put it in the users list
+        //To get user with his info and put it in the users 
         var tempUser = data.results[i].user;
         tempUsers[i]={
           "firstname": tempUser.name.first,

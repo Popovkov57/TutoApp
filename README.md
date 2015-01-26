@@ -27,7 +27,11 @@ git clone https://github.com/popovkov57/tutoApp.git
 ```
 Install project dependance
 ```
-npm install
+npm install angularjs
+npm install angular-mocks
+npm install protractor --save-dev
+./node_modules/protractor/bin/webdriver-manager update
+
 ```
 Test app on your browser
 ```
@@ -36,7 +40,7 @@ ionic serve
 ```
 Start unit tests
 ```
-grunt test
+gulp test
 ```
 Start protractor tests
 ```
