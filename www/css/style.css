@@ -1,12 +1,11 @@
+/*To have the card style for each item of the user list*/
 .my-item {
   border-radius: 3px;
   margin: 5px;
+  box-shadow: 0 5px 6px -6px #777;
 }
 
+/*To change the color of the reorder item button */
 .my-button:before {
   color: rgb(176, 186, 224);
-}
-
-.effect1{
-  box-shadow: 0 5px 6px -6px #777;
 }

@@ -13,6 +13,7 @@ angular.module('serviceApp', ['ionic', 'serviceApp.factories'])
   });
 })
 
+// To route the app view
 .config(function($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise('users')
   $stateProvider

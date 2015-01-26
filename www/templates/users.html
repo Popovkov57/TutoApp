@@ -2,24 +2,23 @@
 
   <ion-nav-bar class="bar-positive" >
     <ion-nav-buttons side="right">
-      <!-- Drop ng-controller -->
       <button id="user-button-add" class="button button-clear ion-person-stalker userButtonAdd" ng-click="openModalAddUser()">+</button>
     </ion-nav-buttons>
   </ion-nav-bar>
 
   <ion-content>
 
+    <!-- Pull to refresh to load a new list of users -->
     <ion-refresher pulling-text="Pull to refresh" on-refresh="getNewList()">
     </ion-refresher>
 
+
+
+    <!-- List of users -->
     <ion-list  show-reorder="showReorderButton">
 
-        <ion-item class="item item-avatar my-item effect1"  href="#/user/{{user.id}}" ng-repeat="user in users"
+        <ion-item class="item item-avatar my-item"  href="#/user/{{user.id}}" ng-repeat="user in users"
         on-hold="longPressCard(showReorderButton)" >
-
-            <!-- utiliser un ui-sref /users/:id
-              réintroduire un ng reapeat
-            -->
 
             <img ng-src="{{user.avatarURL}}">
             <h2>{{user | fullName}}</h2>

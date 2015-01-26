@@ -48,7 +48,7 @@ describe('Users', function(){
     street: '1969 elgin st',
     id: 'graywolf' };
 
-  // url of the random user API 
+  // url of the random user API
   var url="http://api.randomuser.me/?results=5";
   var url1="http://api.randomuser.me/?results=1";
 

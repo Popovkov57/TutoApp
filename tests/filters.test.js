@@ -1,3 +1,4 @@
+// Unit tests to verify if the filter work
 describe('fullName Filter test', function() {
   // Load the module seviceApp
   beforeEach(module('serviceApp'));

@@ -6,17 +6,20 @@ angular.module('serviceApp.factories', [])
   var tempUsers = [];
   var user;
 
-  var _performHttpRequestForUsers = function(count) {
+  // to load n user from API Random user with a HTTP request GET
+  // and to put data in users list
+  var _performHttpRequestForUsers = function(n) {
     var deffered = $q.defer();
 
     _resetUsersList();
 
     url = "http://api.randomuser.me/?results=";
-    url += count;
+    url += n;
 
     $http.get(url)
     .success(function(data, status){
       for(var i=0; i<data.results.length; i++){
+        //To get user with his info and put it in the users list
         var tempUser = data.results[i].user;
         tempUsers[i]={
           "firstname": tempUser.name.first,
@@ -36,6 +39,7 @@ angular.module('serviceApp.factories', [])
     return deffered.promise;
   };
 
+  // To receive a list of 5 random users
   var getList = function(){
     var deffered = $q.defer();
     _performHttpRequestForUsers(5).then(function(tempUsers){
@@ -47,6 +51,7 @@ angular.module('serviceApp.factories', [])
     return deffered.promise;
   }
 
+  // To receive a list of one user
   var getOneRandomUser = function(){
 
     var deffered = $q.defer();
@@ -58,14 +63,17 @@ angular.module('serviceApp.factories', [])
     return deffered.promise;
   }
 
+  // To add a random user in the users list
   var addUser = function(user){
     users.unshift(user);
   }
 
+  // To reset the users list when i do a pull to refresh
   var _resetUsersList = function(){
     tempUsers = [];
   }
 
+  // To get an user from the users list with his id
   var getUserById = function(id){
     for(i=0; i<users.length; i++){
       if(users[i].id == id){
@@ -77,6 +85,7 @@ angular.module('serviceApp.factories', [])
     }
   }
 
+  // To delete an user from the users list with his id
   var deleteUserById = function(id){
     for(i=0; i<users.length; i++){
       if(users[i].id == id){

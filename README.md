@@ -25,6 +25,10 @@ Download the app on your machine
 ```
 git clone https://github.com/popovkov57/tutoApp.git
 ```
+Install project dependance
+```
+npm install
+```
 Test app on your browser
 ```
 cd tutoApp
@@ -32,7 +36,7 @@ ionic serve
 ```
 Start unit tests
 ```
-...
+grunt test
 ```
 Start protractor tests
 ```
