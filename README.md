@@ -25,8 +25,16 @@ Download the app on your machine
 ```
 git clone https://github.com/popovkov57/tutoApp.git
 ```
-Test app
+Test app on your browser
 ```
 cd tutoApp
 ionic serve
+```
+Start unit tests
+```
+...
+```
+Start protractor tests
+```
+./node_modules/protractor/bin/protractor tests/e2e/protractor.config.js
 ```
