@@ -14,3 +14,19 @@ Detail of this exercice [here](https://gist.github.com/skelz0r/80a41c9ef24b16879
 
 * [Ionic documentation](http://ionicframework.com/docs/)
 * [AngularJS documentation](https://docs.angularjs.org/api)
+
+##Requirements
+* cordova
+* npm
+
+##How test app
+
+Download the app on your machine
+```
+git clone https://github.com/popovkov57/tutoApp.git
+```
+Test app
+```
+cd tutoApp
+ionic serve
+```
