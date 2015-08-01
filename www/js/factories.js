@@ -28,7 +28,7 @@ angular.module('serviceApp.factories', [])
           "avatarURL": tempUser.picture.thumbnail,
           "city": tempUser.location.city,
           "street": tempUser.location.street,
-          "id": data.results[i].seed
+          "id": data.seed
         };
       };
       deffered.resolve(tempUsers);
