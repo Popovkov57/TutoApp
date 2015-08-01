@@ -9,6 +9,7 @@ var sh = require('shelljs');
 var gulp = require('gulp');
 var karma = require('karma').server;
 var jasmine = require('gulp-jasmine');
+var jshint = require('gulp-jshint');
 
 
 var paths = {
@@ -53,6 +54,11 @@ gulp.task('git-check', function(done) {
   done();
 });
 
+gulp.task('lint', function() {
+  return gulp.src('./www/js/*.js')
+    .pipe(jshint())
+    .pipe(jshint.reporter('default'));
+});
 
 /**
 * Run test once and exit
@@ -61,5 +67,15 @@ gulp.task('test', function (done) {
   karma.start({
     configFile: __dirname + '/karma.conf.js',
     singleRun: true
+  }, done);
+});
+
+/**
+* Run test once
+*/
+gulp.task('test:continuous', function (done) {
+  karma.start({
+    configFile: __dirname + '/karma.conf.js',
+    singleRun: false
   }, done);
 });
