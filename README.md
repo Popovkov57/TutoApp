@@ -1,6 +1,6 @@
 #Ionic App - Random User List
 
-[![Build Status](https://snap-ci.com/popovkov57/tutoApp/branch/master/build_image)](https://snap-ci.com/popovkov57/tutoApp/branch/master)
+[![Build Status](https://snap-ci.com/popovkov57/tutoApp/branch/master/build_image)](https://snap-ci.com/popovkov57/tutoApp/branch/master) [![Code Climate](https://codeclimate.com/github/popovkov57/tutoApp/badges/gpa.svg)](https://codeclimate.com/github/popovkov57/tutoApp)
 
 ##Objectives
 
