@@ -48,4 +48,8 @@ Start protractor tests
 ```
 ./node_modules/protractor/bin/protractor tests/e2e/protractor.config.js
 ```
+Start linter
+```
+gulp lint
+```
 
