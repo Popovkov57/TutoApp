@@ -17,13 +17,13 @@
     <!-- List of users -->
     <ion-list  show-reorder="showReorderButton">
 
-        <ion-item class="item item-avatar my-item"  href="#/user/{{user.id}}" ng-repeat="user in users"
+        <ion-item class="item item-avatar my-item"  href="#/user/{{user.seed}}" ng-repeat="user in users"
         on-hold="longPressCard(showReorderButton)" >
 
             <img ng-src="{{user.avatarURL}}">
             <h2>{{user | fullName}}</h2>
 
-            <ion-option-button class="button-assertive ion-close-circled" ng-click="deleteById(user.id)">
+            <ion-option-button class="button-assertive ion-close-circled" ng-click="deleteBySeed(user.seed)">
             </ion-option-button>
 
             <ion-reorder-button class="ion-navicon my-button" on-reorder="moveCard(user, $fromIndex, $toIndex)"></ion-reorder-button>

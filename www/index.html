@@ -37,10 +37,11 @@
 
     </ion-pane>
 
-
     <!-- Modal view -->
     <script id="modal-user.html" type="text/ng-template">
+
       <div class="modal" ng-controller= "ModalAddUserCtrl">
+
         <ion-header-bar class="bar-positive">
           <div class="buttons">
             // to close the modal
@@ -61,11 +62,11 @@
               <input type="text" ng-model="user.lastname">
             </label>
           </div>
-          // to add the new user in the users list
           <button id="modal-add-user-button" class="button button-full button-positive" ng-click="modalAddUser(user);closeModal()">Add</button>
-
         </ion-content>
+      
       </div>
+    
     </script>
 
   </body>

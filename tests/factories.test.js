@@ -33,20 +33,21 @@ describe('Users', function(){
         medium: "http://api.randomuser.me/portraits/med/women/55.jpg",
         thumbnail: "http://api.randomuser.me/portraits/thumb/women/55.jpg",
       },
-      version: "0.4.1"
-    },
-    seed: "graywolf"
+      version: "0.4.1",
+      seed: "graywolf"
+    }
   }];
 
   // simulate the data of a user
-  var dataOut = {
+  var dataOut = [{
     firstname: 'lois',
     lastname: 'williams',
     email: 'lois.williams50@example.com',
     avatarURL: 'http://api.randomuser.me/portraits/thumb/women/55.jpg',
     city: 'frederick',
     street: '1969 elgin st',
-    id: 'graywolf' };
+    seed: 'graywolf'
+  }];
 
   // url of the random user API
   var url="http://api.randomuser.me/?results=5";
@@ -68,7 +69,7 @@ describe('Users', function(){
       results : dataIn
     });
     factory.getList().then(function(users){
-      expect(users).toEqual([dataOut]);
+      expect(users).toEqual(dataOut);
     });
     // flush response
     httpMock.flush();
@@ -102,14 +103,14 @@ describe('Users', function(){
     httpMock.flush();
   });
 
-  // --------------------- Methode getUserById() --------------------- //
+  // --------------------- Methode getUserBySeed(seed) --------------------- //
 
   it("display user if his id is not empty", function () {
     httpMock.expectGET(url).respond({
       results : dataIn
     });
     factory.getList().then(function(users){
-      expect(factory.getUserById("graywolf")).toEqual(dataOut);
+      expect([factory.getUserBySeed("graywolf")]).toEqual(dataOut);
     });
     // flush response
     httpMock.flush();
@@ -120,20 +121,20 @@ describe('Users', function(){
       results : dataIn
     });
     factory.getList().then(function(users){
-      expect(factory.getUserById(null)).toEqual(null);
+      expect(factory.getUserBySeed(null)).toEqual(null);
     });
     // flush response
     httpMock.flush();
   });
 
-  // --------------------- Methode deleteUserById(id) --------------------- //
+  // --------------------- Methode deleteUserBySeed(seed) --------------------- //
 
   it("verify new array length is lesser than old array", function () {
     httpMock.expectGET(url).respond({
       results : dataIn
     });
     factory.getList().then(function(users){
-      factory.deleteUserById("graywolf")
+      factory.deleteUserBySeed("graywolf")
       expect(users).toEqual([]);
     });
     // flush response
@@ -146,7 +147,7 @@ describe('Users', function(){
       results : dataIn
     });
     factory.getList().then(function(users){
-      factory.deleteUserById()
+      factory.deleteUserBySeed()
       expect(users).toEqual(users);
     });
     // flush response

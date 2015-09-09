@@ -28,7 +28,7 @@ angular.module('serviceApp.factories', [])
           "avatarURL": tempUser.picture.thumbnail,
           "city": tempUser.location.city,
           "street": tempUser.location.street,
-          "id": data.seed
+          "seed": tempUser.seed
         };
       };
       deffered.resolve(tempUsers);
@@ -73,10 +73,10 @@ angular.module('serviceApp.factories', [])
     tempUsers = [];
   }
 
-  // To get an user from the users list with his id
-  var getUserById = function(id){
+  // To get an user from the users list with his seed
+  var getUserBySeed = function(seed){
     for(i=0; i<users.length; i++){
-      if(users[i].id == id){
+      if(users[i].seed == seed){
         user = users[i];
         return user;
       }else{
@@ -85,10 +85,10 @@ angular.module('serviceApp.factories', [])
     }
   }
 
-  // To delete an user from the users list with his id
-  var deleteUserById = function(id){
+  // To delete an user from the users list with his seed
+  var deleteUserBySeed = function(seed){
     for(i=0; i<users.length; i++){
-      if(users[i].id == id){
+      if(users[i].seed == seed){
         users.splice(i,1);
         return;
       }
@@ -98,8 +98,8 @@ angular.module('serviceApp.factories', [])
   return {
     addUser: addUser,
     getList: getList,
-    getUserById: getUserById,
-    deleteUserById: deleteUserById,
+    getUserBySeed: getUserBySeed,
+    deleteUserBySeed: deleteUserBySeed,
     getOneRandomUser: getOneRandomUser
   }
 });

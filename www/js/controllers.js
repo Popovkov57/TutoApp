@@ -35,8 +35,8 @@ angular.module('serviceApp')
   }
 
 
-  $scope.deleteById = function(id){
-    Users.deleteUserById(id);
+  $scope.deleteBySeed = function(seed){
+    Users.deleteUserBySeed(seed);
   }
 
   $scope.showReorderButton = false;
@@ -78,7 +78,7 @@ angular.module('serviceApp')
 
 // Controller for user view
 .controller('userCtrl', function($scope, Users, $stateParams){
-  $scope.user = Users.getUserById($stateParams.id);
+  $scope.user = Users.getUserBySeed($stateParams.seed);
 })
 
 
