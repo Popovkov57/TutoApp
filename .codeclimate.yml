@@ -5,4 +5,6 @@ languages:
   PHP:false
   Python: false
 exclude_paths:
-- "www/lib/**/*"
+- "www/lib/ionic/js/angular-ui/*.js"
+- "www/lib/ionic/js/angular/*.js"
+- "www/lib/ionic/js/*.js"
