@@ -1,8 +1,6 @@
-#Ionic App - Random User List
+# Ionic App - Random User List
 
-[![Build Status](https://snap-ci.com/popovkov57/tutoApp/branch/master/build_image)](https://snap-ci.com/popovkov57/tutoApp/branch/master) [![Code Climate](https://codeclimate.com/github/popovkov57/tutoApp/badges/gpa.svg)](https://codeclimate.com/github/popovkov57/tutoApp)
-
-##Objectives
+## Objectives
 
 Create an app cross-platform with Ionic framework:
 * Display users list
@@ -12,7 +10,7 @@ Create an app cross-platform with Ionic framework:
 
 Detail of this exercice [here](https://gist.github.com/skelz0r/80a41c9ef24b16879c3a#file-ionic-base-md)
 
-##Resources
+## Resources
 
 * [Ionic documentation](http://ionicframework.com/docs/)
 * [AngularJS documentation](https://docs.angularjs.org/api)
@@ -21,7 +19,7 @@ Detail of this exercice [here](https://gist.github.com/skelz0r/80a41c9ef24b16879
 * cordova
 * npm
 
-##How test app
+## How test app
 
 Download the app on your machine
 ```
