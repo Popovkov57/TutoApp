@@ -15,7 +15,7 @@ Detail of this exercice [here](https://gist.github.com/skelz0r/80a41c9ef24b16879
 * [Ionic documentation](http://ionicframework.com/docs/)
 * [AngularJS documentation](https://docs.angularjs.org/api)
 
-##Requirements
+## Requirements
 * cordova
 * npm
 
